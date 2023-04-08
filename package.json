@@ -1,0 +1,83 @@
+{
+    "name": "garmeres_frontend",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Garmeres website frontend",
+    "author": "Levi Sørum",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Garmeres/garmeres_v2.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Garmeres/garmeres_v2/issues"
+    },
+    "homepage": "https://github.com/Garmeres/garmeres_v2#readme",
+    "keywords": [
+        "garmeres"
+    ],
+    "release": {
+        "branches": [
+            "main"
+        ],
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            [
+                "@semantic-release/npm",
+                {
+                    "npmPublish": false
+                }
+            ],
+            [
+                "@semantic-release/changelog",
+                {
+                    "changelogFile": "CHANGELOG.md"
+                }
+            ],
+            [
+                "@semantic-release/git",
+                {
+                    "assets": [
+                        "CHANGELOG.md",
+                        "package.json",
+                        "package-lock.json"
+                    ],
+                    "message": "${nextRelease.version}"
+                }
+            ]
+        ]
+    },
+    "scripts": {
+        "develop": "gatsby develop",
+        "start": "gatsby develop",
+        "build": "gatsby build",
+        "serve": "gatsby serve",
+        "clean": "gatsby clean",
+        "commit": "npx git-cz"
+    },
+    "dependencies": {
+        "babel-plugin-styled-components": "^2.1.1",
+        "gatsby": "^5.8.1",
+        "gatsby-plugin-image": "^3.8.0",
+        "gatsby-plugin-manifest": "^5.8.0",
+        "gatsby-plugin-sharp": "^5.8.1",
+        "gatsby-plugin-sitemap": "^6.8.0",
+        "gatsby-plugin-styled-components": "^6.8.0",
+        "gatsby-source-filesystem": "^5.8.0",
+        "gatsby-source-storyblok": "^5.0.15",
+        "gatsby-transformer-sharp": "^5.8.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "storyblok-rich-text-react-renderer": "^2.6.1",
+        "styled-components": "^5.3.9"
+    },
+    "devDependencies": {
+        "@semantic-release/git": "^10.0.1",
+        "git-cz": "^4.9.0"
+    },
+    "config": {
+        "commitizen": {
+            "path": "git-cz"
+        }
+    }
+}

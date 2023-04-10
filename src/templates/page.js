@@ -2,19 +2,19 @@ import React from "react";
 import SEO from "../components/seo";
 import { graphql } from "gatsby";
 
-const BlogPost = ({ data }) => {
+const Page = ({ data }) => {
     return <div>Hello</div>;
 };
 
-export default BlogPost;
+export default Page;
 
 export const Head = ({ data }) => {
-    return <SEO seoNode={data.blogPost.seo} />;
+    return <SEO seoNode={data.page.seo} />;
 };
 
 export const query = graphql`
     query ($id: String) {
-        blogPost: storyblokEntry(id: { eq: $id }) {
+        page: storyblokEntry(id: { eq: $id }) {
             id
             name
             lang

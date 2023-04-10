@@ -42,5 +42,13 @@ module.exports = {
                 includeLinks: true,
             },
         },
+        {
+            resolve: "gatsby-plugin-robots-txt",
+            options: {
+                host: "https://garmeres.com",
+                sitemap: "https://garmeres.com/sitemap-index.xml",
+                policy: [{ userAgent: "*", allow: "/" }],
+            },
+        },
     ],
 };

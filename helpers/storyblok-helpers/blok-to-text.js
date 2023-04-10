@@ -1,5 +1,5 @@
 const resolvers = {
-    "blog-post": (blok) => bloksToText(blok.body),
+    "blog-post": (blok) => bloksToText(JSON.parse(blok.content).body),
     rich_text: (blok) => blokToText(blok.text, "type"),
     doc: (blok) => bloksToText(blok.content, "type"),
     paragraph: (blok) => bloksToText(blok.content, "type"),

@@ -9,6 +9,7 @@ export const useSiteMetadata = () => {
                     description
                     siteUrl
                     image
+                    lang
                 }
             }
         }

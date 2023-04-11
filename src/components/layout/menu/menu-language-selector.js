@@ -33,6 +33,14 @@ const Select = styled.select`
     outline: 0;
     font-size: 12pt;
     flex-grow: 1;
+    display: flex;
+    judtify-content: center;
+    align-items: middle;
+`;
+
+const Option = styled.option`
+    display: flex;
+    justify-content: center;
 `;
 
 const globeIconStyle = {
@@ -41,8 +49,6 @@ const globeIconStyle = {
     margin: "auto",
     color: variables.menuFontColor,
 };
-
-const Option = styled.option``;
 
 const LanguageSelector = ({ source, menuNode }) => {
     const [lang, setLang] = useState(source.lang);

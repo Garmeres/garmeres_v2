@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "gatsby";
+import variables from "./variables";
 
 const MenuItem = (props) => {
     return (
         <Link
             {...props}
             style={{
-                color: "white",
+                color: variables.menuFontColor,
                 textDecoration: "none",
-                fontSize: "16pt",
-                margin: "0",
+                fontSize: variables.menuFontSize,
+                margin: "0 40px 0 10px",
             }}
         />
     );

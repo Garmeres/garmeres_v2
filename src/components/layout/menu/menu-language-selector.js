@@ -1,8 +1,46 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useStaticQuery, graphql, navigate } from "gatsby";
+import { IoGlobeOutline } from "react-icons/io5";
+import variables from "./variables";
 
-const Select = styled.select``;
+const SelectorContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid ${variables.menuFontColor};
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    :focus-within {
+        outline: solid 2px ${variables.menuFontColor};
+        outline-offset: -3px;
+    }
+    padding: 0 5px;
+    max-width: 250px;
+    :hover {
+        background-color: #333;
+    }
+`;
+
+const Select = styled.select`
+    height: ${variables.menuButtonHeight};
+    min-width: 150px;
+    padding: 0 5px;
+    background-color: inherit;
+    color: white;
+    border: 0;
+    outline: 0;
+    font-size: 12pt;
+    flex-grow: 1;
+`;
+
+const globeIconStyle = {
+    height: "30px",
+    width: "30px",
+    margin: "auto",
+    color: variables.menuFontColor,
+};
 
 const Option = styled.option``;
 
@@ -42,20 +80,23 @@ const LanguageSelector = ({ source, menuNode }) => {
     };
 
     return (
-        <Select
-            name="languages"
-            id="languages"
-            value={lang}
-            onChange={(e) => setLanguage(e.target.value)}
-        >
-            {languageSettings.edges.map(({ node }) => {
-                return (
-                    <Option key={node.lang} value={node.lang}>
-                        {JSON.parse(node.content).language_label}
-                    </Option>
-                );
-            })}
-        </Select>
+        <SelectorContainer>
+            <IoGlobeOutline style={globeIconStyle} />
+            <Select
+                name="languages"
+                id="languages"
+                value={lang}
+                onChange={(e) => setLanguage(e.target.value)}
+            >
+                {languageSettings.edges.map(({ node }) => {
+                    return (
+                        <Option key={node.lang} value={node.lang}>
+                            {JSON.parse(node.content).language_label}
+                        </Option>
+                    );
+                })}
+            </Select>
+        </SelectorContainer>
     );
 };
 

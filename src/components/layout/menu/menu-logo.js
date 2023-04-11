@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import styled from "styled-components";
+import variables from "./variables";
 
 const getLogoImageNode = (menuNode) =>
     menuNode.imageFiles.find(
@@ -15,7 +16,7 @@ const LogoText = styled.span`
     justify-content: center;
     margin-left: 25px;
     font-size: 24pt;
-    color: white;
+    color: ${variables.menuFontColor};
 `;
 
 const MenuLogo = ({ menuNode }) => {
@@ -28,7 +29,6 @@ const MenuLogo = ({ menuNode }) => {
                 display: "flex",
                 flexDirection: "row",
                 textDecoration: "none",
-                marginRight: "50px",
             }}
         >
             <GatsbyImage
@@ -36,10 +36,10 @@ const MenuLogo = ({ menuNode }) => {
                 alt=""
                 style={{
                     borderRadius: "5px",
-                    width: "70px",
-                    minWidth: "70px",
-                    height: "70px",
-                    minHeight: "70px",
+                    width: variables.menuLogoSize,
+                    minWidth: variables.menuLogoSize,
+                    height: variables.menuLogoSize,
+                    minHeight: variables.menuLogoSize,
                 }}
             />
             <LogoText>{JSON.parse(menuNode.content).logo_text}</LogoText>

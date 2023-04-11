@@ -12,6 +12,7 @@ exports.createPages = async ({ graphql, actions }) => {
                     node {
                         id
                         full_slug
+                        lang
                     }
                 }
             }
@@ -23,6 +24,7 @@ exports.createPages = async ({ graphql, actions }) => {
                         id
                         full_slug
                         slug
+                        lang
                     }
                 }
             }
@@ -35,6 +37,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 component: pageTemplate,
                 context: {
                     id: edge.node.id,
+                    lang: edge.node.lang,
                 },
             });
         }
@@ -45,6 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
             component: blogPostTemplate,
             context: {
                 id: edge.node.id,
+                lang: edge.node.lang,
             },
         });
     });

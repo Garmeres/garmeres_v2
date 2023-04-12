@@ -1,5 +1,4 @@
 module.exports = {
-    backgroundColor: "#222",
     screenWidthMedium: "1080px",
     screenWidthMediumLarge: "1280px",
     screenWidthLarge: "1600px",
@@ -9,5 +8,7 @@ module.exports = {
     menuFontColor: "white",
     menuLogoSize: "70px",
     menuLogoSizeSmall: "60px",
+    backgroundColor: "#222",
+    secondaryBackgroundColor: "#333",
     menuSecondaryBackgroundColor: "#333",
 };

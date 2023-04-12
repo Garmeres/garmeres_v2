@@ -4,25 +4,21 @@ import styled from "styled-components";
 import SocialIcon from "./social-icon";
 
 const Social = styled.div`
+    --social-icon-size: 30px;
+    color: var(--text-color-light);
+    margin-bottom: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 10px;
 `;
 
 const SocialLink = styled.a`
-    color: white;
+    width: var(--social-icon-size);
+    height: var(--social-icon-size);
+    color: inherit;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
     margin: 0 20px;
 `;
-
-const iconStyle = {
-    color: "white",
-    width: "100%",
-    height: "100%",
-};
 
 const FooterSocial = ({ lang }) => {
     const data = useStaticQuery(graphql`
@@ -49,7 +45,7 @@ const FooterSocial = ({ lang }) => {
         <Social>
             {content.items.map((item) => (
                 <SocialLink key={item.name} href={item.url.url} {...item.url}>
-                    <SocialIcon name={item.name} style={iconStyle} />
+                    <SocialIcon name={item.name} />
                 </SocialLink>
             ))}
         </Social>

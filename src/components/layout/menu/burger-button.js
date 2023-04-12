@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import variables from "./variables";
+import variables from "../../../styles/variables";
 
 const Button = styled.button`
+    --burger-button-size: 45px;
+    height: var(--burger-button-size);
+    width: var(--burger-button-size);
+    min-width: var(--burger-button-size);
+    max-width: var(--burger-button-size);
+    background-color: inherit;
     flex-direction: column;
     justify-content: space-evenly;
-    height: ${variables.menuButtonHeight};
-    width: 50px;
-    min-width: 50px;
-    max-width: 50px;
-    background-color: ${variables.backgroundColor};
     margin: 0;
-    padding: 0 5px;
-    overflow: hidden;
+    padding: 0;
     border: none;
     visibility: hidden;
     display: none;
@@ -23,7 +23,7 @@ const Button = styled.button`
 `;
 
 const ButtonBar = styled.div`
-    background-color: ${variables.menuFontColor};
+    background-color: var(--text-color-light);
     width: 100%;
     height: 3px;
 `;

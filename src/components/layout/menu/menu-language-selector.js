@@ -2,36 +2,52 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useStaticQuery, graphql, navigate } from "gatsby";
 import { IoGlobeOutline } from "react-icons/io5";
-import variables from "./variables";
 
 const SelectorContainer = styled.div`
+    --language-select-height: 45px;
+    --language-select-width: 100px;
+    --language-select-max-width: 250px;
+    --globe-icon-size: 30px;
+
+    max-width: var(--language-select-max-width);
+    border: 1px solid var(--text-color-light);
+    background-color(--bg-color-dark);
+    color: var(--text-color-light);
+
+    padding: 0 5px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border: 1px solid ${variables.menuFontColor};
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    :focus-within {
-        outline: solid 2px ${variables.menuFontColor};
-        outline-offset: -3px;
+
+    &.language-selector-mobile {
+        margin: 15px auto;
+        :hover {
+            background-color: var(--bg-color-light);
+        }
     }
-    padding: 0 5px;
-    max-width: 250px;
+
     :hover {
-        background-color: #333;
+        background-color: var(--bg-color-medium);
+    }
+
+    :focus-within {
+        outline: solid 2px var(--highlight-color-light);
+        outline-offset: -3px;
     }
 `;
 
 const Select = styled.select`
-    height: ${variables.menuButtonHeight};
-    min-width: 150px;
+    font-size: var(--paragraph-font-size-small);
+    height: var(--language-select-height);
+    min-width: var(--language-select-width);
     padding: 0 5px;
+    color: inherit;
     background-color: inherit;
-    color: white;
     border: 0;
     outline: 0;
-    font-size: 12pt;
     flex-grow: 1;
     display: flex;
     judtify-content: center;
@@ -43,15 +59,16 @@ const Option = styled.option`
     justify-content: center;
 `;
 
-const globeIconStyle = {
-    height: "30px",
-    width: "30px",
-    margin: "auto",
-    color: variables.menuFontColor,
-};
+const GlobeIcon = styled((props) => <IoGlobeOutline {...props} />)`
+    color: inherit;
+    height: var(--globe-icon-size);
+    width: var(--globe-icon-size);
+    background-color: inherit;
+    margin: auto;
+`;
 
-const LanguageSelector = ({ source, menuNode }) => {
-    const [lang, setLang] = useState(source.lang);
+const LanguageSelector = (props) => {
+    const [lang, setLang] = useState(props.source.lang);
     const { languageSettings } = useStaticQuery(
         graphql`
             query LanguageSettings {
@@ -72,33 +89,30 @@ const LanguageSelector = ({ source, menuNode }) => {
     const navigateToLang = (lang) => {
         navigate(
             lang === "default"
-                ? `/${source.default_full_slug}`
+                ? `/${props.source.default_full_slug}`
                 : `/${lang}/${
-                      source.translated_slugs.find((item) => item.lang === lang)
-                          .path
+                      props.source.translated_slugs.find(
+                          (item) => item.lang === lang
+                      ).path
                   }`
         );
     };
 
-    const setLanguage = (value) => {
-        setLang(value);
-        navigateToLang(value);
-    };
-
-    let i = 0;
-
     return (
-        <SelectorContainer>
-            <IoGlobeOutline style={globeIconStyle} />
+        <SelectorContainer className={props.className}>
+            <GlobeIcon />
             <Select
                 name="languages"
                 id="languages"
                 value={lang}
-                onChange={(e) => setLanguage(e.target.value)}
+                onChange={(e) => {
+                    setLang(e.target.value);
+                    navigateToLang(e.target.value);
+                }}
             >
                 {languageSettings.edges.map(({ node }) => {
                     return (
-                        <Option key={i++} value={node.lang}>
+                        <Option key={node.lang} value={node.lang}>
                             {JSON.parse(node.content).language_label}
                         </Option>
                     );

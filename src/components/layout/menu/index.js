@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import MenuLogo from "./menu-logo";
-import MenuItem from "./menu-item";
 import MenuLanguageSelector from "./menu-language-selector";
 import BurgerButton from "./burger-button";
 import { useState } from "react";
-import variables from "./variables";
+import variables from "../../../styles/variables";
+import { DesktopNav, MobileNav } from "./menu-nav";
+import { DesktopNavItem, MobileNavItem } from "./menu-nav-item";
 
 const Header = styled.header`
+    color: var(--text-color-light);
     display: flex;
     flex-direction: column;
-    height: auto;
     width: 100vw;
     margin: 0;
 
@@ -20,150 +21,84 @@ const Header = styled.header`
 `;
 
 const HeaderHorizontalContainer = styled.div`
+    --header-height: 100px;
+    height: var(--header-hight);
+    min-height: var(--header-height);
+    max-height: var(--header-height);
+    background-color: var(--bg-color-dark);
+    color: inherit;
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
     justify-content: space-between;
     vertical-align: middle;
     align-items: center;
-    min-height: 100px;
-    max-height: 100px;
-    padding: 0 10%;
     box-sizing: border-box;
-    background-color: ${variables.backgroundColor};
-    z-index: 100;
-    @media screen and (max-width: ${variables.screenWidthLarge}) {
-        padding: 0 50px;
-    }
-    @media screen and (max-width: ${variables.screenWidthMediumLarge}) {
-        padding: 0 30px;
-    }
-`;
-
-const MenuContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    vertical-align: middle;
-    align-items: center;
-    justify-content: right;
-    flex-grow: 1;
-    box-sizing: border-box;
-    a {
-        font-size: ${variables.menuFontSize};
-        margin: 0 40px 0 10px;
-        :hover {
-            text-decoration: underline !important;
-        }
-    }
-    @media screen and (max-width: ${variables.screenWidthMediumLarge}) {
-        a {
-            font-size: ${variables.menuFontSizeSmall};
-            margin: 0 20px 0 5px;
-        }
-    }
-    @media screen and (max-width: ${variables.screenWidthMedium}) {
-        visibility: hidden;
-        display: none;
-    }
-`;
-
-const MobileMenuContainer = styled.div.attrs((props) => ({
-    className: props.className,
-}))`
-    visibility: hidden;
-    display: none
     width: 100%;
-    background-color: ${variables.menuSecondaryBackgroundColor};
-    flex-direction: column;
-    justify-content: center;
-    height: 0;
-    a {
-        display: flex;
-        padding: 25px 0;
-        justify-content: center;
-        font-size: 14pt;
-        border-top: 1px solid #555;
-        margin: 0 !important;
-        :hover {
-            text-decoration: underline !important;
-            background-color: #444;
-        }
-        :nth-last-child(2) {
-            border-bottom: 1px solid #555 !important;
-        }
+    z-index: 100;
+    padding: 0 10%;
+    @media screen and (max-width: ${variables.screenWidthLarge}) {
+        padding: 0 30px;
+        --header-height: 90px;
     }
-    div {
-        margin: 15px auto;
-        :hover {
-            background-color: #444;
-        }
-    }
-    
-    @media screen and (max-width: ${variables.screenWidthMedium}) {
-        visibility: ${(props) => (props.isVisible ? "visible" : "hidden")};
-        display: ${(props) => (props.isVisible ? "flex" : "none")};
-        height: auto;
-        overflow-y: hidden;
-        position: relative;
+    @media screen and (max-width: ${variables.screenWidthMediumLarge}) {
+        padding: 0 15px;
+        --header-height: 80px;
     }
 `;
 
 const getMenuAriaLabel = (isOpen) =>
     isOpen === true ? "Hide navigation menu" : "Show navigation menu";
 
-const Menu = ({ menuNode, source }) => {
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const menuItems = JSON.parse(menuNode.content).items;
-    const storyblokLinks = menuNode.storyblokLinks;
-    let i = 0;
-
-    const MenuItems = menuItems
-        .map((item) => storyblokLinks.find((link) => link.uuid === item.page))
-        .map((link) => (
-            <MenuItem
-                key={i++}
-                to={
-                    menuNode.lang === "default"
-                        ? `/${link.slug}`
-                        : `/${menuNode.lang}/${
-                              link.alternates.find(
-                                  (item) => item.lang === menuNode.lang
-                              ).path
-                          }`
-                }
-            >
-                {menuNode.lang === "default"
+const getMenuItems = (menuNode) =>
+    JSON.parse(menuNode.content)
+        .items.map((item) =>
+            menuNode.storyblokLinks.find((link) => link.uuid === item.page)
+        )
+        .map((link) => ({
+            to:
+                menuNode.lang === "default"
+                    ? `/${link.slug}`
+                    : `/${menuNode.lang}/${
+                          link.alternates.find(
+                              (item) => item.lang === menuNode.lang
+                          ).path
+                      }`,
+            children:
+                menuNode.lang === "default"
                     ? link.name
                     : link.alternates.find(
                           (item) => item.lang === menuNode.lang
-                      ).name}
-            </MenuItem>
-        ))
-        .concat([
-            <MenuLanguageSelector
-                key={i}
-                menuNode={menuNode}
-                source={source}
-            />,
-        ]);
+                      ).name,
+        }));
+
+const Menu = ({ menuNode, source }) => {
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
+    const menuItems = getMenuItems(menuNode);
+    let i = 0;
     return (
         <Header>
             <HeaderHorizontalContainer>
                 <MenuLogo menuNode={menuNode} />
-                <MenuContainer>{MenuItems}</MenuContainer>
+                <DesktopNav>
+                    {menuItems.map((menuItemProps) => (
+                        <DesktopNavItem key={i++} {...menuItemProps} />
+                    ))}
+                    <MenuLanguageSelector source={source} />
+                </DesktopNav>
                 <BurgerButton
                     aria-label={getMenuAriaLabel(menuIsOpen)}
                     onClick={() => setMenuIsOpen(!menuIsOpen)}
                 />
             </HeaderHorizontalContainer>
-            <MobileMenuContainer
-                isVisible={menuIsOpen}
-                className={menuIsOpen ? "visible" : "hidden"}
-            >
-                {MenuItems}
-            </MobileMenuContainer>
+            <MobileNav isVisible={menuIsOpen}>
+                {menuItems.map((menuItemProps) => (
+                    <MobileNavItem key={i++} {...menuItemProps} />
+                ))}
+                <MenuLanguageSelector
+                    className="language-selector-mobile"
+                    source={source}
+                />
+            </MobileNav>
         </Header>
     );
 };

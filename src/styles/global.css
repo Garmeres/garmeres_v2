@@ -9,4 +9,21 @@ p {
 * {
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
         "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    outline-color: var(--highlight-color-light);
+}
+:root {
+    --paragraph-font-size-small: 12pt;
+    --paragraph-font-size-medium-small: 13pt;
+    --paragraph-font-size-medium: 14pt;
+    --bg-color-dark: #222;
+    --bg-color-medium: #333;
+    --bg-color-light: #444;
+    --bg-color-extra-light: #555;
+    --text-color-light: white;
+    --highlight-color-light: #79ddeb;
+    --text-color-dark: black;
+    --theme-color-light-blue: #79ddeb;
+    --screen-width-medium: 1080px;
+    --screen-width-medium-large: 1280px;
+    --screen-width-large: 1600px;
 }

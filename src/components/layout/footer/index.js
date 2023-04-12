@@ -5,24 +5,29 @@ import RichText from "../../storyblok/rich-text";
 import FooterSocial from "./footer-social";
 
 const StyledFooter = styled.footer`
+    color: var(--text-color-light);
+    background-color: var(--bg-color-medium);
+    font-size: var(--paragraph-font-size-medium);
     display: flex;
     justify-content: center;
     width: 100vw;
     min-height: 300px;
-    background-color: #333;
-    color: white;
-    font-size: 14pt;
     padding: 30px 50px;
     box-sizing: border-box;
-    a {
-        color: #79ddeb;
-    }
 `;
 
 const FooterInnerContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+`;
+
+const FooterRichText = styled((props) => <RichText {...props} />)`
+    text-align: center;
+    color: inherit;
+    a {
+        color: var(--theme-color-light-blue);
+    }
 `;
 
 const Footer = ({ lang }) => {
@@ -48,11 +53,8 @@ const Footer = ({ lang }) => {
         <StyledFooter>
             <FooterInnerContainer>
                 <FooterSocial lang={lang} />
-                <RichText
+                <FooterRichText
                     document={JSON.parse(footerNode.content).body_text}
-                    style={{
-                        textAlign: "center",
-                    }}
                 />
             </FooterInnerContainer>
         </StyledFooter>

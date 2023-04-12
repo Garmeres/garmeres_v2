@@ -103,12 +103,13 @@ const Menu = ({ menuNode, source }) => {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const menuItems = JSON.parse(menuNode.content).items;
     const storyblokLinks = menuNode.storyblokLinks;
+    let i = 0;
 
     const MenuItems = menuItems
         .map((item) => storyblokLinks.find((link) => link.uuid === item.page))
         .map((link) => (
             <MenuItem
-                key={link.id}
+                key={i++}
                 to={
                     menuNode.lang === "default"
                         ? `/${link.slug}`
@@ -126,7 +127,13 @@ const Menu = ({ menuNode, source }) => {
                       ).name}
             </MenuItem>
         ))
-        .concat([<MenuLanguageSelector menuNode={menuNode} source={source} />]);
+        .concat([
+            <MenuLanguageSelector
+                key={i}
+                menuNode={menuNode}
+                source={source}
+            />,
+        ]);
     return (
         <Header>
             <HeaderHorizontalContainer>

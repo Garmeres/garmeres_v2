@@ -25,7 +25,7 @@ const Layout = ({ menuNode, source, children }) => {
         <LayoutContainer>
             <Menu menuNode={menuNode} source={source} />
             <Main>{children}</Main>
-            <Footer></Footer>
+            <Footer lang={menuNode.lang}></Footer>
         </LayoutContainer>
     );
 };

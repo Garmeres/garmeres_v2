@@ -85,6 +85,8 @@ const LanguageSelector = ({ source, menuNode }) => {
         navigateToLang(value);
     };
 
+    let i = 0;
+
     return (
         <SelectorContainer>
             <IoGlobeOutline style={globeIconStyle} />
@@ -96,7 +98,7 @@ const LanguageSelector = ({ source, menuNode }) => {
             >
                 {languageSettings.edges.map(({ node }) => {
                     return (
-                        <Option key={node.lang} value={node.lang}>
+                        <Option key={i++} value={node.lang}>
                             {JSON.parse(node.content).language_label}
                         </Option>
                     );

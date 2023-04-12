@@ -27,6 +27,7 @@
     "dependencies": {
         "babel-plugin-styled-components": "^2.1.1",
         "gatsby": "^5.8.1",
+        "gatsby-omni-font-loader": "^2.0.2",
         "gatsby-plugin-image": "^3.8.0",
         "gatsby-plugin-manifest": "^5.8.0",
         "gatsby-plugin-robots-txt": "^1.8.0",
@@ -40,6 +41,7 @@
         "npm": "^9.6.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-helmet": "^6.1.0",
         "react-icons": "^4.8.0",
         "storyblok-rich-text-react-renderer": "^2.7.4",
         "styled-components": "^5.3.9"

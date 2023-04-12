@@ -9,8 +9,6 @@ const MenuItem = (props) => {
             style={{
                 color: variables.menuFontColor,
                 textDecoration: "none",
-                fontSize: variables.menuFontSize,
-                margin: "0 40px 0 10px",
             }}
         />
     );

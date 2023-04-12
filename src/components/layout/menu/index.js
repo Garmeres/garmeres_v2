@@ -13,6 +13,10 @@ const Header = styled.header`
     height: auto;
     width: 100vw;
     margin: 0;
+
+    * {
+        font-family: Quicksand !important;
+    }
 `;
 
 const HeaderHorizontalContainer = styled.div`
@@ -46,8 +50,18 @@ const MenuContainer = styled.div`
     justify-content: right;
     flex-grow: 1;
     box-sizing: border-box;
-    a:hover {
-        text-decoration: underline !important;
+    a {
+        font-size: ${variables.menuFontSize};
+        margin: 0 40px 0 10px;
+        :hover {
+            text-decoration: underline !important;
+        }
+    }
+    @media screen and (max-width: ${variables.screenWidthMediumLarge}) {
+        a {
+            font-size: ${variables.menuFontSizeSmall};
+            margin: 0 20px 0 5px;
+        }
     }
     @media screen and (max-width: ${variables.screenWidthMedium}) {
         visibility: hidden;
@@ -69,7 +83,7 @@ const MobileMenuContainer = styled.div.attrs((props) => ({
         display: flex;
         padding: 25px 0;
         justify-content: center;
-        font-size: 18pt;
+        font-size: 14pt;
         border-top: 1px solid #555;
         margin: 0 !important;
         :hover {

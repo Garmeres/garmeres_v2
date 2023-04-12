@@ -1,9 +1,14 @@
 import React from "react";
 import SEO from "../components/seo";
 import { graphql } from "gatsby";
+import Layout from "../components/layout";
 
 const Page = ({ data }) => {
-    return <div>Hello</div>;
+    return (
+        <Layout menuNode={data.menu} source={data.page}>
+            Hello
+        </Layout>
+    );
 };
 
 export default Page;
@@ -13,7 +18,7 @@ export const Head = ({ data }) => {
 };
 
 export const query = graphql`
-    query ($id: String) {
+    query ($id: String, $lang: String) {
         page: storyblokEntry(id: { eq: $id }) {
             id
             name
@@ -29,6 +34,14 @@ export const query = graphql`
                 name
                 path
             }
+            imageFiles {
+                url
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
             seo {
                 lang
                 title
@@ -43,6 +56,31 @@ export const query = graphql`
                     hrefLang
                     rel
                     target
+                }
+            }
+        }
+        menu: storyblokEntry(
+            lang: { eq: $lang }
+            field_component: { eq: "menu" }
+        ) {
+            lang
+            content
+            imageFiles {
+                url
+                childImageSharp {
+                    gatsbyImageData(width: 100, quality: 90)
+                }
+            }
+            storyblokLinks {
+                id
+                uuid
+                real_path
+                name
+                slug
+                alternates {
+                    lang
+                    name
+                    path
                 }
             }
         }

@@ -8,6 +8,17 @@ const resolvers = {
         return images.concat(getImagesFromBloks(JSON.parse(blok.content).body));
     },
     page: (blok) => getImagesFromBloks(JSON.parse(blok.content).body),
+    menu: (blok) => {
+        const content = JSON.parse(blok.content);
+        return content.logo != null && content.logo.filename !== ""
+            ? [
+                  {
+                      filename: content.logo.filename,
+                      alt: content.logo.alt,
+                  },
+              ]
+            : [];
+    },
     rich_text: (blok) => getImagesFromBlok(blok.text, "type"),
     doc: (blok) => getImagesFromBloks(blok.content, "type"),
     paragraph: (blok) => getImagesFromBloks(blok.content, "type"),

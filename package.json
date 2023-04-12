@@ -21,11 +21,13 @@
         "build": "gatsby build",
         "serve": "gatsby serve",
         "clean": "gatsby clean",
-        "commit": "npx git-cz"
+        "commit": "npx git-cz",
+        "clean-start": "npm run clean && npm start"
     },
     "dependencies": {
         "babel-plugin-styled-components": "^2.1.1",
         "gatsby": "^5.8.1",
+        "gatsby-omni-font-loader": "^2.0.2",
         "gatsby-plugin-image": "^3.8.0",
         "gatsby-plugin-manifest": "^5.8.0",
         "gatsby-plugin-robots-txt": "^1.8.0",
@@ -35,9 +37,13 @@
         "gatsby-source-filesystem": "^5.8.0",
         "gatsby-source-storyblok": "^5.0.15",
         "gatsby-transformer-sharp": "^5.8.0",
+        "install": "^0.13.0",
+        "npm": "^9.6.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "storyblok-rich-text-react-renderer": "^2.6.1",
+        "react-helmet": "^6.1.0",
+        "react-icons": "^4.8.0",
+        "storyblok-rich-text-react-renderer": "^2.7.4",
         "styled-components": "^5.3.9"
     },
     "devDependencies": {

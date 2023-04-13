@@ -56,7 +56,7 @@ const getMenuItems = (menuNode, source) =>
             menuNode.storyblokLinks.find((link) => link.uuid === item.page)
         )
         .map((link) => ({
-            isSelected: link.uuid == source.uuid,
+            selected: link.uuid === source.uuid,
             to:
                 menuNode.lang === "default"
                     ? `/${link.slug}`

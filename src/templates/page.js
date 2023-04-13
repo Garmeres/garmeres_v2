@@ -4,8 +4,8 @@ import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 import Layout from "../components/layout";
 import styled from "styled-components";
-import RichText from "../components/storyblok/rich-text";
 import variables from "../styles/variables";
+import { DynamicPageComponent } from "../components/page-components";
 
 const PageBody = styled.div`
     --page-content-width: 75%;
@@ -41,11 +41,6 @@ const PageBody = styled.div`
     }
 `;
 
-const PageBodyRichText = styled((props) => <RichText {...props} />)`
-    padding: 10vh 5vw;
-    box-sizing: border-box;
-`;
-
 const Page = ({ data }) => {
     const bgImageBlok = JSON.parse(data.page.content).background_image;
     const bgGatsbyImage =
@@ -72,11 +67,9 @@ const Page = ({ data }) => {
             }
         >
             <PageBody>
-                {JSON.parse(data.page.content).body.map((bodyItem) =>
-                    bodyItem.component === "rich_text" ? (
-                        <PageBodyRichText key={i++} document={bodyItem.text} />
-                    ) : null
-                )}
+                {JSON.parse(data.page.content).body.map((bodyItem) => (
+                    <DynamicPageComponent key={i++} {...bodyItem} />
+                ))}
             </PageBody>
         </Layout>
     );

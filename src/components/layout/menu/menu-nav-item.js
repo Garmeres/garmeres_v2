@@ -7,7 +7,7 @@ const NavItem = styled((props) => <Link {...props} />)`
     color: var(--text-color-light);
     text-decoration: underline solid
         ${(props) =>
-            props.isSelected ? "var(--text-color-light)" : "transparent"};
+            props.selected ? "var(--text-color-light)" : "transparent"};
     font-size: var(--paragraph-font-size-medium);
 
     @keyframes bg-fade-in {

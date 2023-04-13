@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { GatsbyImage } from "gatsby-plugin-image";
 import variables from "../../styles/variables";
 
-const BakgroundImage = styled((props) => <GatsbyImage {...props} />)`
+const BakgroundImage = styled((props) => (
+    <GatsbyImage title="Background image" {...props} />
+))`
     position: relative;
     top: 0;
     height: 100%;

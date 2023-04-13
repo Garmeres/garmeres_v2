@@ -8,9 +8,9 @@ const BakgroundImage = styled((props) => (
 ))`
     position: relative;
     top: 0;
-    height: 100%;
+    height: auto;
     width: 100%;
-    filter: blur(2px);
+    filter: blur(1px);
     left: 0;
     right: 0;
     bottom: 0;
@@ -18,9 +18,10 @@ const BakgroundImage = styled((props) => (
     max-height: 75vh;
     opacity: 1;
     border: none;
-    @media screen and (max-width: ${variables.screenWidthMediumSmall}) {
-        max-height: 30vh;
-        filter: blur(1px);
+    background-size: auto 100%;
+    @media screen and (max-width: ${variables.screenWidthMedium}) {
+        min-height: 40vh;
+        max-height: 50vh;
     }
 `;
 
@@ -28,7 +29,6 @@ const Background = styled.div`
     position: absolute;
     top: -1%;
     left: -1%;
-    right: 0;
     display: flex;
     flex-grow: 1;
     width: 102%;
@@ -44,7 +44,10 @@ const LayoutBackground = ({
     backgroundImageAlt,
 }) => {
     return (
-        <Background backgroundColor={backgroundColor}>
+        <Background
+            backgroundColor={backgroundColor}
+            hasbackgroundimage={backgroundImage != null}
+        >
             {backgroundImage != null ? (
                 <BakgroundImage
                     image={backgroundImage}

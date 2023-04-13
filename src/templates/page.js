@@ -3,43 +3,7 @@ import Seo from "../components/seo";
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 import Layout from "../components/layout";
-import styled from "styled-components";
-import variables from "../styles/variables";
 import { DynamicPageComponent } from "../components/page-components";
-
-const PageBody = styled.div`
-    --page-content-width: 75%;
-    width: var(--page-content-width);
-    min-width: var(--page-content-width);
-    max-width: var(--page-content-width);
-    background-color: var(--bg-color-article);
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    flex-grow: 1;
-    box-sizing: border-box;
-    border-radius: 4px;
-    margin-top: 25vh;
-    @media screen and (max-width: ${variables.screenWidthExtraLarge}) {
-        --page-content-width: 80%;
-    }
-    @media screen and (max-width: ${variables.screenWidthLarge}) {
-        --page-content-width: 90%;
-        margin-top: 30vh;
-    }
-    @media screen and (max-width: ${variables.screenWidthMediumLarge}) {
-        --page-content-width: 95%;
-    }
-    @media screen and (max-width: ${variables.screenWidthMedium}) {
-    }
-    @media screen and (max-width: ${variables.screenWidthMediumSmall}) {
-        --page-content-width: 100%;
-    }
-    @media screen and (max-width: ${variables.screenWidthSmall}) {
-    }
-`;
 
 const Page = ({ data }) => {
     const bgImageBlok = JSON.parse(data.page.content).background_image;
@@ -66,20 +30,16 @@ const Page = ({ data }) => {
                 JSON.parse(data.page.content).background_color.color
             }
         >
-            <PageBody>
-                {JSON.parse(data.page.content).body.map((bodyItem) => (
-                    <DynamicPageComponent key={i++} {...bodyItem} />
-                ))}
-            </PageBody>
+            {JSON.parse(data.page.content).body.map((bodyItem) => (
+                <DynamicPageComponent key={i++} {...bodyItem} />
+            ))}
         </Layout>
     );
 };
 
 export default Page;
 
-export const Head = ({ data }) => {
-    return <Seo seoNode={data.page.seo} />;
-};
+export const Head = ({ data }) => <Seo seoNode={data.page.seo} />;
 
 export const query = graphql`
     query ($id: String, $lang: String) {

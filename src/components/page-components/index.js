@@ -1,8 +1,10 @@
 import React from "react";
 import PageRichText from "./page-rich-text";
+import PageFeatured from "./featured";
 
 const resolvers = {
     rich_text: (props) => <PageRichText {...props} />,
+    featured: (props) => <PageFeatured {...props} />,
     default: () => null,
 };
 

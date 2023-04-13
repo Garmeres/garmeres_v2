@@ -50,12 +50,13 @@ const HeaderHorizontalContainer = styled.div`
 const getMenuAriaLabel = (isOpen) =>
     isOpen === true ? "Hide navigation menu" : "Show navigation menu";
 
-const getMenuItems = (menuNode) =>
+const getMenuItems = (menuNode, source) =>
     JSON.parse(menuNode.content)
         .items.map((item) =>
             menuNode.storyblokLinks.find((link) => link.uuid === item.page)
         )
         .map((link) => ({
+            isSelected: link.uuid == source.uuid,
             to:
                 menuNode.lang === "default"
                     ? `/${link.slug}`
@@ -74,7 +75,7 @@ const getMenuItems = (menuNode) =>
 
 const Menu = ({ menuNode, source }) => {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const menuItems = getMenuItems(menuNode);
+    const menuItems = getMenuItems(menuNode, source);
     let i = 0;
     return (
         <Header>

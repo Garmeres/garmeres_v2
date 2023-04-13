@@ -1,52 +1,11 @@
 import React from "react";
 import Seo from "../components/seo";
 import { graphql } from "gatsby";
+import { getImage } from "gatsby-plugin-image";
 import Layout from "../components/layout";
 import styled from "styled-components";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import RichText from "../components/storyblok/rich-text";
 import variables from "../styles/variables";
-
-const BakgroundImage = styled((props) => {
-    const imageBlok = JSON.parse(props.pagenode.content).background_image;
-    if (imageBlok == null) {
-        return null;
-    }
-    const gatsbyImage = props.pagenode.imageFiles.find(
-        (item) => item != null && item.url === imageBlok.filename
-    );
-    return (
-        <GatsbyImage
-            image={getImage(gatsbyImage)}
-            alt={imageBlok.alt}
-            {...props}
-        />
-    );
-})`
-    height: 100%;
-    width: 100%;
-    filter: blur(2px);
-    left: 0;
-    right: 0;
-    object-fit: cover;
-    max-height: 75vh;
-    opacity: 1;
-    @media screen and (max-width: ${variables.screenWidthMediumSmall}) {
-        max-height: 30vh;
-    }
-`;
-
-const Background = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: black;
-`;
 
 const PageBody = styled.div`
     --page-content-width: 75%;
@@ -88,16 +47,30 @@ const PageBodyRichText = styled((props) => <RichText {...props} />)`
 `;
 
 const Page = ({ data }) => {
+    const bgImageBlok = JSON.parse(data.page.content).background_image;
+    const bgGatsbyImage =
+        bgImageBlok != null
+            ? getImage(
+                  data.page.imageFiles.find(
+                      (item) =>
+                          item != null && item.url === bgImageBlok.filename
+                  )
+              )
+            : null;
     let i = 0;
     return (
-        <Layout menuNode={data.menu} source={data.page}>
-            <Background
-                backgroundColor={
-                    JSON.parse(data.page.content).background_color.color
-                }
-            >
-                <BakgroundImage pagenode={data.page} />
-            </Background>
+        <Layout
+            menuNode={data.menu}
+            source={data.page}
+            backgroundImage={bgGatsbyImage}
+            backgroundImageAlt={bgImageBlok != null ? bgImageBlok.alt : null}
+            backgroundImageCopyright={
+                bgImageBlok != null ? bgImageBlok.copyright : null
+            }
+            backgroundColor={
+                JSON.parse(data.page.content).background_color.color
+            }
+        >
             <PageBody>
                 {JSON.parse(data.page.content).body.map((bodyItem) =>
                     bodyItem.component === "rich_text" ? (
@@ -135,7 +108,7 @@ export const query = graphql`
             imageFiles {
                 url
                 childImageSharp {
-                    gatsbyImageData(layout: FULL_WIDTH, quality: 80)
+                    gatsbyImageData(layout: FULL_WIDTH, quality: 50)
                 }
             }
             seo {

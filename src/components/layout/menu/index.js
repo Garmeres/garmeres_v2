@@ -9,23 +9,29 @@ import { DesktopNav, MobileNav } from "./menu-nav";
 import { DesktopNavItem, MobileNavItem } from "./menu-nav-item";
 
 const Header = styled.header`
+    --header-height: 100px;
+    --header-content-width: 95%;
     color: var(--text-color-light);
+    background: var(--bg-color-dark);
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    min-width: 100vw;
+    width: 100%;
     margin: 0;
-
+    padding: 0;
     * {
         font-family: Quicksand !important;
     }
 `;
 
 const HeaderHorizontalContainer = styled.div`
-    --header-height: 100px;
+    width: var(--header-content-width);
+    min-width: var(--header-content-width);
+    max-width: var(--header-content-width);
     height: var(--header-hight);
     min-height: var(--header-height);
     max-height: var(--header-height);
-    background-color: var(--bg-color-dark);
+    background-color: var(inherit);
     color: inherit;
     display: flex;
     flex-direction: row;
@@ -33,28 +39,24 @@ const HeaderHorizontalContainer = styled.div`
     vertical-align: middle;
     align-items: center;
     box-sizing: border-box;
-    width: 100%;
     z-index: 100;
-    padding: 0 10%;
+    margin: 0 auto;
     @media screen and (max-width: ${variables.screenWidthLarge}) {
-        padding: 0 30px;
-        --header-height: 90px;
     }
     @media screen and (max-width: ${variables.screenWidthMediumLarge}) {
-        padding: 0 15px;
-        --header-height: 80px;
     }
 `;
 
 const getMenuAriaLabel = (isOpen) =>
     isOpen === true ? "Hide navigation menu" : "Show navigation menu";
 
-const getMenuItems = (menuNode) =>
+const getMenuItems = (menuNode, source) =>
     JSON.parse(menuNode.content)
         .items.map((item) =>
             menuNode.storyblokLinks.find((link) => link.uuid === item.page)
         )
         .map((link) => ({
+            selected: link.uuid === source.uuid,
             to:
                 menuNode.lang === "default"
                     ? `/${link.slug}`
@@ -73,7 +75,7 @@ const getMenuItems = (menuNode) =>
 
 const Menu = ({ menuNode, source }) => {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const menuItems = getMenuItems(menuNode);
+    const menuItems = getMenuItems(menuNode, source);
     let i = 0;
     return (
         <Header>

@@ -1,5 +1,5 @@
 import React from "react";
-import SEO from "../components/seo";
+import Seo from "../components/seo";
 import { graphql } from "gatsby";
 
 const BlogPost = ({ data }) => {
@@ -9,7 +9,7 @@ const BlogPost = ({ data }) => {
 export default BlogPost;
 
 export const Head = ({ data }) => {
-    return <SEO seoNode={data.blogPost.seo} />;
+    return <Seo seoNode={data.blogPost.seo} />;
 };
 
 export const query = graphql`

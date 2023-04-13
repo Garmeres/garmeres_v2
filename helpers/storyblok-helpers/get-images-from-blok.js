@@ -7,7 +7,12 @@ const resolvers = {
         }
         return images.concat(getImagesFromBloks(JSON.parse(blok.content).body));
     },
-    page: (blok) => getImagesFromBloks(JSON.parse(blok.content).body),
+    page: (blok) => {
+        const bg_image = JSON.parse(blok.content).background_image;
+        return (bg_image != null ? [bg_image] : []).concat(
+            getImagesFromBloks(JSON.parse(blok.content).body)
+        );
+    },
     menu: (blok) => {
         const content = JSON.parse(blok.content);
         return content.logo != null && content.logo.filename !== ""

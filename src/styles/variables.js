@@ -1,7 +1,10 @@
 module.exports = {
+    screenWidthSmall: "720px",
+    screenWidthMediumSmall: "920px",
     screenWidthMedium: "1080px",
     screenWidthMediumLarge: "1280px",
-    screenWidthLarge: "1600px",
+    screenWidthLarge: "1420px",
+    screenWidthExtraLarge: "1600px",
     menuButtonHeight: "45px",
     menuFontSize: "14pt",
     menuFontSizeSmall: "13pt",

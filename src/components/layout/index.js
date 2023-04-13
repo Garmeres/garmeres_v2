@@ -2,6 +2,7 @@ import React from "react";
 import Menu from "./menu";
 import styled from "styled-components";
 import Footer from "./footer";
+import LayoutBackground from "./layout-background";
 
 const LayoutContainer = styled.div`
     display: flex;
@@ -18,14 +19,34 @@ const Main = styled.main`
     position: relative;
     top: 0;
     bottom: 0;
+    box-sizing: border-box;
 `;
 
-const Layout = ({ menuNode, source, children }) => {
+const Layout = ({
+    menuNode,
+    source,
+    children,
+    backgroundColor,
+    backgroundImage,
+    backgroundImageAlt,
+    backgroundImageCopyright,
+}) => {
     return (
         <LayoutContainer>
             <Menu menuNode={menuNode} source={source} />
-            <Main>{children}</Main>
-            <Footer lang={menuNode.lang}></Footer>
+            <Main>
+                <LayoutBackground
+                    backgroundColor={backgroundColor}
+                    backgroundImage={backgroundImage}
+                    backgroundImageAlt={backgroundImageAlt}
+                    backgroundImageCopyright={backgroundImageCopyright}
+                />
+                {children}
+            </Main>
+            <Footer
+                lang={menuNode.lang}
+                backgroundImageCopyright={backgroundImageCopyright}
+            ></Footer>
         </LayoutContainer>
     );
 };

@@ -11,7 +11,7 @@ const StyledFooter = styled.footer`
     display: flex;
     justify-content: center;
     width: 100vw;
-    min-height: 300px;
+    min-height: var(--footer-height);
     padding: 30px 50px;
     box-sizing: border-box;
 `;
@@ -30,7 +30,13 @@ const FooterRichText = styled((props) => <RichText {...props} />)`
     }
 `;
 
-const Footer = ({ lang }) => {
+const FooterBackgroundCopyright = styled.p`
+    margin: 0;
+    margin-top: 20px;
+    text-align: center;
+`;
+
+const Footer = ({ lang, backgroundImageCopyright }) => {
     const data = useStaticQuery(graphql`
         query {
             footers: allStoryblokEntry(
@@ -53,6 +59,11 @@ const Footer = ({ lang }) => {
         <StyledFooter>
             <FooterInnerContainer>
                 <FooterSocial lang={lang} />
+                {backgroundImageCopyright != null ? (
+                    <FooterBackgroundCopyright>
+                        {backgroundImageCopyright}
+                    </FooterBackgroundCopyright>
+                ) : null}
                 <FooterRichText
                     document={JSON.parse(footerNode.content).body_text}
                 />

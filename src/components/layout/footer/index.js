@@ -5,6 +5,7 @@ import RichText from "../../storyblok/rich-text";
 import FooterSocial from "./footer-social";
 
 const StyledFooter = styled.footer`
+    --footer-height: 300px;
     color: var(--text-color-light);
     background-color: var(--bg-color-medium);
     font-size: var(--paragraph-font-size-medium);

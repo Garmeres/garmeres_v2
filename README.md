@@ -14,7 +14,8 @@ This is the second iteration for the Garmeres website. For more information abou
 For local development, create a file named `.env.development` and add the following variables:
 
 ```
-STORYBLOK_ACCESS_TOKEN=
+GATSBY_STORYBLOK_API_URL=
+GATSBY_STORYBLOK_ACCESS_TOKEN=
 ```
 
 ## Deploy to production

@@ -1,5 +1,7 @@
 body {
     margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 p {
@@ -28,7 +30,13 @@ p {
     --text-color-dark: black;
     --highlight-color-light: #79ddeb;
     --text-color-dark: black;
+    --theme-color-light-grey: #ccc;
+    --theme-color-light-green: #acd2ac;
+    --theme-color-light-yellow: #fada11;
+    --theme-color-light-pink: #ffb1c9;
     --theme-color-light-blue: #79ddeb;
-
-    --footer-height: 300px;
+    --theme-color-dark-blue: #005a8f;
+    --theme-color-dark-purple: #81277d;
+    --theme-color-dark-red: #a7162b;
+    --theme-color-dark-brown: #784f30;
 }

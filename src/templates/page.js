@@ -31,7 +31,11 @@ const Page = ({ data }) => {
             }
         >
             {JSON.parse(data.page.content).body.map((bodyItem) => (
-                <DynamicPageComponent key={i++} {...bodyItem} />
+                <DynamicPageComponent
+                    key={i++}
+                    {...bodyItem}
+                    source={data.page}
+                />
             ))}
         </Layout>
     );

@@ -7,14 +7,14 @@ const RichTextImage = styled((props) => {
 	let imgBlok = props.source.richTextImages.find(
 		(imgFile) => imgFile.url === props.src
 	);
-	return (
+	return imgBlok != null ? (
 		<GatsbyImage
 			{...props}
 			image={imgBlok.childImageSharp.gatsbyImageData}
 			alt={props.alt}
 			as='span'
 		/>
-	);
+	) : null;
 })`
 	display: flex;
 	margin: 24pt auto;

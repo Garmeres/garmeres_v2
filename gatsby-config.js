@@ -22,7 +22,12 @@ module.exports = {
                 icon: "src/images/icon.png",
             },
         },
-        "gatsby-plugin-sharp",
+        {
+            resolve: "gatsby-plugin-sharp",
+            options: {
+                breakpoints: [300, 750, 1080, 1366, 1920]
+            }
+        },
         "gatsby-transformer-sharp",
         {
             resolve: "gatsby-source-filesystem",

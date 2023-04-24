@@ -12,6 +12,7 @@ const BlogPost = ({ data }) => {
 	let i = 0;
 	return (
 		<Layout
+			homeSlug={`/${data.homePage.full_slug}`}
 			menuNode={data.menu}
 			source={data.blogPost}
 			backgroundColor='black'
@@ -98,6 +99,13 @@ export const query = graphql`
 					path
 				}
 			}
+		}
+		homePage: storyblokEntry(
+			lang: { eq: $lang }
+			field_component: { eq: "page" }
+			slug: { eq: "home" }
+		) {
+			full_slug
 		}
 	}
 `;

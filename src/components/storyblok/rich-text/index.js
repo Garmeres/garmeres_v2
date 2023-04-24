@@ -1,29 +1,7 @@
-import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { render, NODE_IMAGE } from 'storyblok-rich-text-react-renderer';
 import styled from 'styled-components';
-
-const RichTextImage = styled((props) => {
-	let imgBlok = props.source.richTextImages.find(
-		(imgFile) => imgFile.url === props.src
-	);
-	return imgBlok != null ? (
-		<GatsbyImage
-			{...props}
-			image={imgBlok.childImageSharp.gatsbyImageData}
-			alt={props.alt}
-			as='span'
-		/>
-	) : null;
-})`
-	display: flex;
-	margin: 24pt auto;
-
-	img {
-		width: unset;
-		margin: auto;
-	}
-`;
+import RichTextImage from './rich-text-image';
 
 const RichTextContainer = styled.div``;
 
@@ -37,6 +15,7 @@ function RichText(props) {
 					[NODE_IMAGE]: (children, p) => (
 						<RichTextImage
 							{...p}
+							children={children}
 							source={props.source}
 						/>
 					),

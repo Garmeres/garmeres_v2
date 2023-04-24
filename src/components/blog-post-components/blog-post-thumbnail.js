@@ -36,7 +36,7 @@ const BlogPostThumbnail = styled((props) => (
 	flex-direction: column;
 	justify-content: center;
 	width: 100%;
-	margin: 0 auto;
+	margin: 12pt auto;
 `;
 
 export default BlogPostThumbnail;

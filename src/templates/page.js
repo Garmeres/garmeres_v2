@@ -15,6 +15,7 @@ const Page = ({ data }) => {
 					)
 			  )
 			: null;
+
 	let i = 0;
 	return (
 		<Layout

@@ -61,7 +61,19 @@ module.exports = {
 				web: [
 					{
 						name: `Quicksand`,
-						file: `https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap`,
+						file: `https://fonts.googleapis.com/css2?family=Quicksand:wght@100;200;300;400;500;600;700&display=swap`,
+					},
+					{
+						name: `Poiret One`,
+						file: `https://fonts.googleapis.com/css2?family=Poiret+One:wght@100;200;300;400;500;600;700&display=swap`,
+					},
+					{
+						name: `Bellota Text`,
+						file: `https://fonts.googleapis.com/css2?family=Bellota+Text:wght@100;200;300;400;500;600;700&display=swap`,
+					},
+					{
+						name: `Roboto`,
+						file: `https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700&display=swap`,
 					},
 				],
 			},

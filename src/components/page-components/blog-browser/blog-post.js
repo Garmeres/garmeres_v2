@@ -38,17 +38,26 @@ const BlogPostCard = styled((props) => (
 	display: flex;
 	flex-direction: column;
 	box-sizing: border-box;
-	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.9);
 	text-decoration: none;
 
-	@media screen and (max-width: ${variables.screenWidthSmall}) {
+	@media screen and (max-width: ${variables.screenWidthMediumSmall}) {
 		width: 100%;
 		max-width: var(--blog-post-card-width);
+		--blog-post-card-width: 400px;
+		--blog-post-card-padding: 15px;
+	}
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		--blog-post-card-width: 360px;
 	}
 	@media screen and (max-width: ${variables.screenWidthExtraSmall}) {
-		--blog-post-card-width: 85vw;
+		--blog-post-card-width: 80vw;
 		--blog-post-card-padding: 0;
-		box-shadow: none;
+	}
+
+	:hover {
+		h2 {
+			text-decoration: underline;
+		}
 	}
 `;
 
@@ -70,17 +79,16 @@ const BlogPost = styled((props) => (
 	height: auto;
 	min-width: 30%;
 	max-width: 49%;
-	padding: 0 50px 80px 50px;
+	padding: 0 2.5em 8em 2.5em;
 	@media screen and (max-width: ${variables.screenWidthMedium}) {
 		min-width: 100%;
 		max-width: 100%;
 	}
-	@media screen and (max-width: ${variables.screenWidthSmall}) {
-		padding: 0 0 80px 0;
+	@media screen and (max-width: ${variables.screenWidthMediumSmall}) {
+		padding: 0 0 6em 0;
 	}
 
 	@media screen and (max-width: ${variables.screenWidthExtraSmall}) {
-		padding: 0 0 120px 0;
 	}
 `;
 export default BlogPost;

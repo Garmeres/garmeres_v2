@@ -26,12 +26,21 @@ const BlogPostThumbnail = styled((props) => {
 	max-height: var(--blog-post-thumbnail-height);
 	box-sizing: border-box;
 	object-fit: cover;
-	@media screen and (max-width: ${variables.screenWidthSmall}) {
+	margin-bottom: 1em;
+
+	@media screen and (max-width: ${variables.screenWidthMedium}) {
 		--blog-post-thumbnail-width: 100%;
+		--blog-post-thumbnail-height: 380px;
+	}
+	@media screen and (max-width: ${variables.screenWidthMediumSmall}) {
+		--blog-post-thumbnail-height: 340px;
+	}
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		--blog-post-thumbnail-height: 320px;
 	}
 	@media screen and (max-width: ${variables.screenWidthExtraSmall}) {
-		--blog-post-thumbnail-width: 85vw;
-		--blog-post-thumbnail-height: 85vw;
+		--blog-post-thumbnail-width: 80vw;
+		--blog-post-thumbnail-height: 75vw;
 	}
 `;
 

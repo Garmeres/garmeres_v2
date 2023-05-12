@@ -19,6 +19,8 @@ body {
 * {
 	font-family: 'PT Sans';
 	outline-color: var(--highlight-color-light);
+	font-size: var(--font-size-extra-small);
+	line-height: 1.5;
 }
 
 h1,
@@ -30,10 +32,33 @@ h6 {
 	font-weight: 500;
 }
 
+h1 {
+	font-size: var(--font-size-large);
+}
+h2 {
+	font-size: var(--font-size-medium-large);
+}
+h3 {
+	font-size: var(--font-size-medium);
+}
+h4 {
+	font-size: var(--font-size-medium-small);
+}
+h5 {
+	font-size: var(--font-size-small);
+}
+h6 {
+	font-size: var(--font-size-extra-small);
+}
+
 :root {
-	--paragraph-font-size-small: 12pt;
-	--paragraph-font-size-medium-small: 13pt;
-	--paragraph-font-size-medium: 14pt;
+	--font-size-extra-large: 3em;
+	--font-size-large: 2.2em;
+	--font-size-medium-large: 1.8em;
+	--font-size-medium: 1.4em;
+	--font-size-medium-small: 1.2em;
+	--font-size-small: 1.1em;
+	--font-size-extra-small: 1em;
 
 	--bg-color-dark: #222;
 	--bg-color-medium: #333;

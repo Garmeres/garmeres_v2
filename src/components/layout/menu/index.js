@@ -9,7 +9,7 @@ import { DesktopNav, MobileNav } from './menu-nav';
 import { DesktopNavItem, MobileNavItem } from './menu-nav-item';
 
 const Header = styled.header`
-	--header-height: 100px;
+	--header-height: 110px;
 	--header-content-width: 95%;
 	color: var(--text-color-light);
 	background: var(--bg-color-dark);
@@ -21,6 +21,9 @@ const Header = styled.header`
 	padding: 0;
 	* {
 		font-family: Quicksand !important;
+	}
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		--header-height: 80px;
 	}
 `;
 
@@ -41,10 +44,6 @@ const HeaderHorizontalContainer = styled.div`
 	box-sizing: border-box;
 	z-index: 100;
 	margin: 0 auto;
-	@media screen and (max-width: ${variables.screenWidthLarge}) {
-	}
-	@media screen and (max-width: ${variables.screenWidthMediumLarge}) {
-	}
 `;
 
 const getMenuAriaLabel = (isOpen) =>

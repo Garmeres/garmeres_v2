@@ -12,7 +12,7 @@ const BlogPostParagraph = styled((props) => {
 		</p>
 	);
 })`
-	font-size: 1em;
+	font-size: var(--font-size-extra-small);
 	line-height: 1.5em;
 	margin: 1em 0;
 `;

@@ -54,14 +54,11 @@ const CallToAction = styled((props) => <Link {...props} />)`
 const resolvers = {
 	featured_title: (props) => <H1>{props.featuredComponent.text}</H1>,
 	featured_text: (props) => <P>{props.featuredComponent.text}</P>,
-	call_to_action: (props) => {
-		console.log(props.featuredComponent);
-		return (
-			<CallToAction to={`/${props.featuredComponent.link.story.full_slug}`}>
-				{props.featuredComponent.text}
-			</CallToAction>
-		);
-	},
+	call_to_action: (props) => (
+		<CallToAction to={`/${props.featuredComponent.link.story.full_slug}`}>
+			{props.featuredComponent.text}
+		</CallToAction>
+	),
 	default: () => null,
 };
 

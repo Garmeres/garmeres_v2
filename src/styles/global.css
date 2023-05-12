@@ -16,17 +16,18 @@ body {
 	box-sizing: border-box;
 }
 
-p {
-	font-size: 12pt;
+* {
+	font-family: 'PT Sans';
+	outline-color: var(--highlight-color-light);
 }
 
-* {
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-		'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-		'Lucida Sans', Arial, sans-serif;
-
-	outline-color: var(--highlight-color-light);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 500;
 }
 
 :root {

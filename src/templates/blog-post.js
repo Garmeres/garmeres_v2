@@ -55,10 +55,10 @@ export const query = graphql`
 				name
 				path
 			}
-			richTextImages: imageFiles {
+			imageFiles {
 				url
 				childImageSharp {
-					gatsbyImageData(width: 800)
+					gatsbyImageData(width: 800, quality: 70)
 				}
 			}
 			seo {

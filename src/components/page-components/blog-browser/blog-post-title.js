@@ -15,7 +15,6 @@ const BlogPostTitle = styled((props) => {
 })`
 	font-size: 1.2em;
 	margin: 1.2em 0;
-	font-family: Bellota Text;
 `;
 
 export default BlogPostTitle;

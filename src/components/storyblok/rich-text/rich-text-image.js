@@ -17,6 +17,7 @@ const RichTextImage = styled((props) => {
 				image={imgBlok.childImageSharp.gatsbyImageData}
 				alt={props.alt}
 				as='span'
+				objectFit='contain'
 			/>
 			<RichTextImageCopyright>{props.copyright}</RichTextImageCopyright>
 		</span>

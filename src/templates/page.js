@@ -64,7 +64,7 @@ export const query = graphql`
 			imageFiles {
 				url
 				childImageSharp {
-					gatsbyImageData(layout: FULL_WIDTH, quality: 50)
+					gatsbyImageData(quality: 70)
 				}
 			}
 			seo {

@@ -15,19 +15,22 @@ const getImageFile = (imageUrl, context) =>
 	});
 
 const resolveNodeImages = async (source, args, context, info) => {
-	const result = [
-		...new Set(
-			getImagesFromBlok(source, 'field_component').map(
-				(image) => image.filename
-			)
-		),
-	].map((imageUrl) => {
-		const imgFile = getImageFile(imageUrl, context);
-		//TODO: DENNE ER ASYNC
-		return imgFile;
-	});
-	await Promise.all(result);
-	return result;
+	var result = [];
+	await Promise.all(
+		[
+			...new Set(
+				getImagesFromBlok(source, 'field_component').map(
+					(image) => image.filename
+				)
+			),
+		].map(async (imgUrl) => {
+			const imgFile = await getImageFile(imgUrl, context);
+			if (imgFile != null) {
+				result.push(imgFile);
+			}
+		})
+	);
+	return result.filter((item) => item != null);
 };
 
 module.exports = { resolveNodeImages };

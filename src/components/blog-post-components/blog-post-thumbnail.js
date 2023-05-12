@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import variables from '../../styles/variables';
 
 const ThumbnailCopyright = styled((props) => {
 	const copyright = JSON.parse(props.source.content).thumbnail.copyright;
@@ -13,7 +14,7 @@ const ThumbnailCopyright = styled((props) => {
 
 const ThumbnailImage = (props) => {
 	const imgBlok = JSON.parse(props.source.content).thumbnail;
-	const thumbnailImage = props.source.richTextImages.find(
+	const thumbnailImage = props.source.imageFiles.find(
 		(item) => item.url === imgBlok.filename
 	);
 	return thumbnailImage != null ? (
@@ -36,7 +37,14 @@ const BlogPostThumbnail = styled((props) => (
 	flex-direction: column;
 	justify-content: center;
 	width: 100%;
-	margin: 12pt auto;
+	max-width: ${variables.richTextWidthDefault};
+	margin: 1em auto;
+	img {
+		max-height: 65vh;
+		@media screen and (max-height: ${variables.screenWidthSmall}) {
+			max-height: 90vh;
+		}
+	}
 `;
 
 export default BlogPostThumbnail;

@@ -16,7 +16,6 @@ const BlogPostDate = styled((props) => {
 })`
 	opacity: 0.8;
 	font-size: 1em;
-	font-family: Bellota Text;
 `;
 
 export default BlogPostDate;

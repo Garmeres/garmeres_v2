@@ -15,7 +15,6 @@ const BlogPostParagraph = styled((props) => {
 	font-size: 1em;
 	line-height: 1.5em;
 	margin: 1em 0;
-	font-family: Bellota Text;
 `;
 
 export default BlogPostParagraph;

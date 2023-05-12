@@ -3,37 +3,42 @@ import Seo from '../components/seo';
 import { graphql } from 'gatsby';
 import { getImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
-import { DynamicPageComponent } from '../components/page-components';
+import { StoryblokComponent, useStoryblokState } from 'gatsby-source-storyblok';
 
-const Page = ({ data }) => {
-	const bgImageBlok = JSON.parse(data.page.content).background_image;
+const Page = (props) => {
+	const { data } = props;
+	const page = useStoryblokState(data.page);
+	const menu = useStoryblokState(data.menu);
+	const footer = useStoryblokState(data.footer);
+	const homePage = useStoryblokState(data.homePage);
+	const bgImageBlok = page.content.background_image;
 	const bgGatsbyImage =
 		bgImageBlok != null
 			? getImage(
-					data.page.imageFiles.find(
+					page.imageFiles.find(
 						(item) => item != null && item.url === bgImageBlok.filename
 					)
 			  )
 			: null;
-
-	let i = 0;
 	return (
 		<Layout
-			homeSlug={`/${data.homePage.full_slug}`}
-			menuNode={data.menu}
-			source={data.page}
+			homeSlug={`/${homePage.full_slug}`}
+			menuNode={menu}
+			footerNode={footer}
+			source={page}
 			backgroundImage={bgGatsbyImage}
 			backgroundImageAlt={bgImageBlok != null ? bgImageBlok.alt : null}
 			backgroundImageCopyright={
 				bgImageBlok != null ? bgImageBlok.copyright : null
 			}
-			backgroundColor={JSON.parse(data.page.content).background_color.color}
+			backgroundColor={page.content.background_color.color}
 		>
-			{JSON.parse(data.page.content).body.map((bodyItem) => (
-				<DynamicPageComponent
-					key={i++}
-					{...bodyItem}
-					source={data.page}
+			{page.content.body.map((bodyItem) => (
+				<StoryblokComponent
+					blok={bodyItem}
+					key={bodyItem._uid}
+					source={page}
+					className='page'
 				/>
 			))}
 		</Layout>
@@ -42,7 +47,9 @@ const Page = ({ data }) => {
 
 export default Page;
 
-export const Head = ({ data }) => <Seo seoNode={data.page.seo} />;
+export const Head = ({ data }) => (
+	<Seo seoNode={useStoryblokState(data.page).seo} />
+);
 
 export const query = graphql`
 	query ($id: String, $lang: String) {
@@ -105,6 +112,14 @@ export const query = graphql`
 					path
 				}
 			}
+		}
+		footer: storyblokEntry(
+			lang: { eq: $lang }
+			field_component: { eq: "footer" }
+		) {
+			lang
+			full_slug
+			content
 		}
 		homePage: storyblokEntry(
 			lang: { eq: $lang }

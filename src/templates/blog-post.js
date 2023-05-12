@@ -1,31 +1,37 @@
 import React from 'react';
+import { useStoryblokState } from 'gatsby-source-storyblok';
 import Seo from '../components/seo';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import { DynamicBlogPostComponent } from '../components/blog-post-components';
 import BlogPostThumbnail from '../components/blog-post-components/blog-post-thumbnail';
 import BlogPostContentContainer from '../components/blog-post-components/blog-post-content-container';
 import BlogPostTitle from '../components/blog-post-components/blog-post-title';
 import BlogPostDateAndAuthor from '../components/blog-post-components/blog-post-date-and-author';
+import { StoryblokComponent } from 'gatsby-source-storyblok';
 
 const BlogPost = ({ data }) => {
-	let i = 0;
+	const blogPost = useStoryblokState(data.blogPost);
+	const menu = useStoryblokState(data.menu);
+	const footer = useStoryblokState(data.footer);
+	const homePage = useStoryblokState(data.homePage);
 	return (
 		<Layout
-			homeSlug={`/${data.homePage.full_slug}`}
-			menuNode={data.menu}
-			source={data.blogPost}
+			homeSlug={`/${homePage.full_slug}`}
+			menuNode={menu}
+			footerNode={footer}
+			source={blogPost}
 			backgroundColor='black'
 		>
 			<BlogPostContentContainer>
-				<BlogPostThumbnail source={data.blogPost} />
-				<BlogPostTitle source={data.blogPost} />
-				<BlogPostDateAndAuthor source={data.blogPost} />
-				{JSON.parse(data.blogPost.content).body.map((bodyItem) => (
-					<DynamicBlogPostComponent
-						key={i++}
-						{...bodyItem}
-						source={data.blogPost}
+				<BlogPostThumbnail source={blogPost} />
+				<BlogPostTitle source={blogPost} />
+				<BlogPostDateAndAuthor source={blogPost} />
+				{blogPost.content.body.map((bodyItem) => (
+					<StoryblokComponent
+						blok={bodyItem}
+						key={bodyItem._uid}
+						source={blogPost}
+						className='blog-post'
 					/>
 				))}
 			</BlogPostContentContainer>
@@ -35,7 +41,9 @@ const BlogPost = ({ data }) => {
 
 export default BlogPost;
 
-export const Head = ({ data }) => <Seo seoNode={data.blogPost.seo} />;
+export const Head = ({ data }) => (
+	<Seo seoNode={useStoryblokState(data.blogPost).seo} />
+);
 
 export const query = graphql`
 	query ($id: String, $lang: String) {
@@ -99,6 +107,14 @@ export const query = graphql`
 					path
 				}
 			}
+		}
+		footer: storyblokEntry(
+			lang: { eq: $lang }
+			field_component: { eq: "footer" }
+		) {
+			lang
+			full_slug
+			content
 		}
 		homePage: storyblokEntry(
 			lang: { eq: $lang }

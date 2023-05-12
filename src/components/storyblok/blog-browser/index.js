@@ -32,18 +32,23 @@ const BlogBrowser = styled((props) => {
 			const body = await fetchBlogPosts({
 				language: props.source.lang,
 				page: page,
-				per_page: props.page_capacity,
+				per_page: props.blok.page_capacity,
 				starts_with:
-					props.source_path.story != null
-						? props.source_path.story.default_full_slug
+					props.blok.source_path.story != null
+						? props.blok.source_path.story.default_full_slug
 						: null,
 			});
 			setBlogPosts((bp) => [...new Set(bp.concat(body.stories))]);
-			setHasMore(page < Math.ceil(body.total / props.page_capacity));
+			setHasMore(page < Math.ceil(body.total / props.blok.page_capacity));
 			setIsLoading(false);
 		}
 		getBlogPosts();
-	}, [page, props.page_capacity, props.source.lang, props.source_path.story]);
+	}, [
+		page,
+		props.blok.page_capacity,
+		props.source.lang,
+		props.blok.source_path.story,
+	]);
 
 	return (
 		<div {...props}>
@@ -52,13 +57,13 @@ const BlogBrowser = styled((props) => {
 					<BlogPost
 						key={blogPost.uuid}
 						node={blogPost}
-						source={props}
+						source={props.blok}
 					/>
 				))}
 			</BlogPostsContainer>
 			{hasMore ? (
 				<ShowMoreMutton
-					source={props}
+					source={props.blok}
 					options={{ isLoading: isLoading }}
 					onClick={() => setPage(page + 1)}
 				/>
@@ -67,8 +72,11 @@ const BlogBrowser = styled((props) => {
 	);
 })`
 	background-color: ${(props) =>
-		getHexWithAlpha(props.background_color.color, props.background_opacity)};
-	color: ${(props) => props.text_color.color};
+		getHexWithAlpha(
+			props.blok.background_color.color,
+			props.blok.background_opacity
+		)};
+	color: ${(props) => props.blok.text_color.color};
 	--page-content-width: ${variables.pageContentWidthDefault};
 	width: var(--page-content-width);
 	min-width: var(--page-content-width);

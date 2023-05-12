@@ -5,9 +5,9 @@ import { DynamicFeaturedComponent } from './featured-components';
 
 const PageFeatured = styled((props) => {
 	let i = 0;
-	return props.body.length > 0 ? (
+	return props.blok.body.length > 0 ? (
 		<div {...props}>
-			{props.body.map((featuredItem) => (
+			{props.blok.body.map((featuredItem) => (
 				<DynamicFeaturedComponent
 					key={i++}
 					featuredComponent={featuredItem}

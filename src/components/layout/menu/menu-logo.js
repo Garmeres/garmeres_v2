@@ -50,16 +50,16 @@ const LogoText = styled.span`
 
 const getLogoImageNode = (menuNode) =>
 	menuNode.imageFiles.find(
-		(file) => file.url === JSON.parse(menuNode.content).logo.filename
+		(file) => file.url === menuNode.content.logo.filename
 	);
 
 const MenuLogo = ({ menuNode, homeSlug }) => (
 	<LogoLink homeslug={homeSlug}>
 		<LogoImage
 			image={getImage(getLogoImageNode(menuNode))}
-			alt={JSON.parse(menuNode.content).logo.alt}
+			alt={menuNode.content.logo.alt}
 		/>
-		<LogoText>{JSON.parse(menuNode.content).logo_text}</LogoText>
+		<LogoText>{menuNode.content.logo_text}</LogoText>
 	</LogoLink>
 );
 

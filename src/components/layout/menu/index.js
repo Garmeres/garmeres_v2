@@ -50,8 +50,8 @@ const getMenuAriaLabel = (isOpen) =>
 	isOpen === true ? 'Hide navigation menu' : 'Show navigation menu';
 
 const getMenuItems = (menuNode, source) =>
-	JSON.parse(menuNode.content)
-		.items.map((item) =>
+	menuNode.content.items
+		.map((item) =>
 			menuNode.storyblokLinks.find((link) => link.uuid === item.page)
 		)
 		.map((link) => ({

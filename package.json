@@ -1,58 +1,59 @@
 {
-    "name": "garmeres_frontend",
-    "version": "1.0.0",
-    "private": true,
-    "description": "Garmeres website frontend",
-    "author": "Levi Sørum",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Garmeres/garmeres_v2.git"
-    },
-    "bugs": {
-        "url": "https://github.com/Garmeres/garmeres_v2/issues"
-    },
-    "homepage": "https://github.com/Garmeres/garmeres_v2#readme",
-    "keywords": [
-        "garmeres"
-    ],
-    "scripts": {
-        "develop": "gatsby develop",
-        "start": "gatsby develop",
-        "build": "gatsby build",
-        "serve": "gatsby serve",
-        "clean": "gatsby clean",
-        "commit": "npx git-cz",
-        "clean-start": "npm run clean && npm start"
-    },
-    "dependencies": {
-        "babel-plugin-styled-components": "^2.1.1",
-        "gatsby": "^5.8.1",
-        "gatsby-omni-font-loader": "^2.0.2",
-        "gatsby-plugin-image": "^3.8.0",
-        "gatsby-plugin-manifest": "^5.9.0",
-        "gatsby-plugin-robots-txt": "^1.8.0",
-        "gatsby-plugin-sharp": "^5.9.0",
-        "gatsby-plugin-sitemap": "^6.8.0",
-        "gatsby-plugin-styled-components": "^6.9.0",
-        "gatsby-source-filesystem": "^5.8.0",
-        "gatsby-source-storyblok": "^5.0.15",
-        "gatsby-transformer-sharp": "^5.8.0",
-        "install": "^0.13.0",
-        "npm": "^9.6.4",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-helmet": "^6.1.0",
-        "react-icons": "^4.8.0",
-        "react-spinners": "^0.13.8",
-        "storyblok-rich-text-react-renderer": "^2.8.0",
-        "styled-components": "^5.3.10"
-    },
-    "devDependencies": {
-        "git-cz": "^4.9.0"
-    },
-    "config": {
-        "commitizen": {
-            "path": "git-cz"
-        }
-    }
+	"name": "garmeres_frontend",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Garmeres website frontend",
+	"author": "Levi Sørum",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Garmeres/garmeres_v2.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Garmeres/garmeres_v2/issues"
+	},
+	"homepage": "https://github.com/Garmeres/garmeres_v2#readme",
+	"keywords": [
+		"garmeres"
+	],
+	"scripts": {
+		"develop": "ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop",
+		"start": "ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop",
+		"build": "gatsby build",
+		"serve": "gatsby serve",
+		"clean": "gatsby clean",
+		"commit": "npx git-cz",
+		"clean-start": "npm run clean && npm start"
+	},
+	"dependencies": {
+		"@storyblok/js": "^2.1.4",
+		"babel-plugin-styled-components": "^2.1.1",
+		"gatsby": "^5.8.1",
+		"gatsby-omni-font-loader": "^2.0.2",
+		"gatsby-plugin-image": "^3.8.0",
+		"gatsby-plugin-manifest": "^5.9.0",
+		"gatsby-plugin-robots-txt": "^1.8.0",
+		"gatsby-plugin-sharp": "^5.9.0",
+		"gatsby-plugin-sitemap": "^6.8.0",
+		"gatsby-plugin-styled-components": "^6.9.0",
+		"gatsby-source-filesystem": "^5.8.0",
+		"gatsby-source-storyblok": "^5.0.15",
+		"gatsby-transformer-sharp": "^5.8.0",
+		"install": "^0.13.0",
+		"npm": "^9.6.4",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-helmet": "^6.1.0",
+		"react-icons": "^4.8.0",
+		"react-spinners": "^0.13.8",
+		"storyblok-rich-text-react-renderer": "^2.8.0",
+		"styled-components": "^5.3.10"
+	},
+	"devDependencies": {
+		"git-cz": "^4.9.0"
+	},
+	"config": {
+		"commitizen": {
+			"path": "git-cz"
+		}
+	}
 }

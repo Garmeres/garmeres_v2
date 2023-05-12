@@ -1,8 +1,9 @@
 import React from 'react';
 import Menu from './menu';
 import styled from 'styled-components';
-import Footer from './footer';
 import LayoutBackground from './layout-background';
+import StoryblokWrapper from '../storyblok';
+import { StoryblokComponent } from 'gatsby-source-storyblok';
 
 const LayoutContainer = styled.div`
 	display: flex;
@@ -24,6 +25,7 @@ const Main = styled.main`
 
 const Layout = ({
 	menuNode,
+	footerNode,
 	source,
 	homeSlug,
 	children,
@@ -32,26 +34,32 @@ const Layout = ({
 	backgroundImageAlt,
 	backgroundImageCopyright,
 }) => (
-	<LayoutContainer>
-		<Menu
-			menuNode={menuNode}
-			source={source}
-			homeSlug={homeSlug}
-		/>
-		<Main>
-			<LayoutBackground
-				backgroundColor={backgroundColor}
-				backgroundImage={backgroundImage}
-				backgroundImageAlt={backgroundImageAlt}
-				backgroundImageCopyright={backgroundImageCopyright}
+	<StoryblokWrapper>
+		<LayoutContainer>
+			<Menu
+				menuNode={menuNode}
+				source={source}
+				homeSlug={homeSlug}
 			/>
-			{children}
-		</Main>
-		<Footer
-			lang={menuNode.lang}
-			backgroundImageCopyright={backgroundImageCopyright}
-		></Footer>
-	</LayoutContainer>
+			<Main>
+				<LayoutBackground
+					backgroundColor={backgroundColor}
+					backgroundImage={backgroundImage}
+					backgroundImageAlt={backgroundImageAlt}
+					backgroundImageCopyright={backgroundImageCopyright}
+				/>
+				{children}
+			</Main>
+			<StoryblokComponent
+				blok={{
+					component: 'footer',
+					...footerNode,
+				}}
+				lang={menuNode.lang}
+				backgroundImageCopyright={backgroundImageCopyright}
+			></StoryblokComponent>
+		</LayoutContainer>
+	</StoryblokWrapper>
 );
 
 export default Layout;

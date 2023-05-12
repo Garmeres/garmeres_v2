@@ -1,16 +1,37 @@
 import React from 'react';
 import { render, NODE_IMAGE } from 'storyblok-rich-text-react-renderer';
-import styled from 'styled-components';
 import RichTextImage from './rich-text-image';
+import styled from 'styled-components';
+import variables from '../../../styles/variables';
 
-const RichTextContainer = styled.div``;
+const pageContentWidthStyling = `
+	@media screen and (max-width: ${variables.screenWidthExtraLarge}) {
+		--page-content-width: ${variables.pageContentWidthExtraLarge};
+	}
+	@media screen and (max-width: ${variables.screenWidthLarge}) {
+		--page-content-width: ${variables.pageContentWidthLarge};
+	}
+	@media screen and (max-width: ${variables.screenWidthMediumLarge}) {
+		--page-content-width: ${variables.pageContentWidthMediumLarge};
+	}
+	@media screen and (max-width: ${variables.screenWidthMedium}) {
+		--page-content-width: ${variables.pageContentWidthMedium};
+	}
+	@media screen and (max-width: ${variables.screenWidthMediumSmall}) {
+		--page-content-width: ${variables.pageContentWidthMediumSmall};
+	}
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		--page-content-width: ${variables.pageContentWidthSmall};
+	}
+	@media screen and (max-width: ${variables.screenWidthExtraSmall}) {
+		--page-content-width: ${variables.pageContentWidthExtraSmall};
+	}
+`;
 
-function RichText(props) {
-	// document is the rich text object you receive from Storyblok,
-	// in the form { type: "doc", content: [ ... ] }
+const RichText = styled((props) => {
 	return (
-		<RichTextContainer {...props}>
-			{render(props.document, {
+		<div {...props}>
+			{render(props.blok.text, {
 				nodeResolvers: {
 					[NODE_IMAGE]: (children, p) => (
 						<RichTextImage
@@ -21,8 +42,71 @@ function RichText(props) {
 					),
 				},
 			})}
-		</RichTextContainer>
+		</div>
 	);
-}
+})`
+	&.footer {
+		text-align: center;
+		color: inherit;
+		a {
+			color: var(--theme-color-light-blue);
+		}
+	}
+
+	&.blog-post {
+		max-width: ${variables.richTextWidthDefault};
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&.not-found {
+		--page-content-width: ${variables.pageContentWidthDefault};
+		width: var(--page-content-width);
+		min-width: var(--page-content-width);
+		max-width: var(--page-content-width);
+		background-color: var(--bg-color-article);
+		min-height: 50vh;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		margin: 0 auto;
+		flex-grow: 1;
+		box-sizing: border-box;
+		border-radius: 4px;
+		padding: 10vh 5vw;
+
+		${pageContentWidthStyling}
+	}
+
+	&.page {
+		--page-content-width: ${variables.pageContentWidthDefault};
+		width: var(--page-content-width);
+		min-width: var(--page-content-width);
+		max-width: var(--page-content-width);
+		background-color: var(--bg-color-article);
+		min-height: 50vh;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		margin: 0 auto;
+		flex-grow: 1;
+		box-sizing: border-box;
+		border-radius: 4px;
+		padding: 10vh 5vw;
+
+		&:nth-child(2) {
+			margin-top: 25vh;
+			@media screen and (max-width: ${variables.screenWidthLarge}) {
+				margin-top: 30vh;
+			}
+			@media screen and (max-width: ${variables.screenWidthMedium}) {
+				margin-top: 40vh;
+			}
+		}
+
+		${pageContentWidthStyling}
+	}
+`;
 
 export default RichText;

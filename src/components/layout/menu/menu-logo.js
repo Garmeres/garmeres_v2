@@ -46,10 +46,6 @@ const LogoText = styled.span`
 		font-size: var(--font-size-medium-large);
 		margin-left: 0.5em;
 	}
-
-	@media screen and (max-width: ${variables.screenWidthMedium}) {
-		font-size: var(--font-size-medium-large);
-	}
 `;
 
 const getLogoImageNode = (menuNode) =>

@@ -3,7 +3,7 @@ import Menu from './menu';
 import styled from 'styled-components';
 import LayoutBackground from './layout-background';
 import StoryblokWrapper from '../storyblok';
-import { StoryblokComponent } from 'gatsby-source-storyblok';
+import { StoryblokComponent, storyblokEditable } from 'gatsby-source-storyblok';
 
 const LayoutContainer = styled.div`
 	display: flex;
@@ -37,11 +37,12 @@ const Layout = ({
 	<StoryblokWrapper>
 		<LayoutContainer>
 			<Menu
+				{...storyblokEditable(menuNode)}
 				menuNode={menuNode}
 				source={source}
 				homeSlug={homeSlug}
 			/>
-			<Main>
+			<Main {...storyblokEditable(source)}>
 				<LayoutBackground
 					backgroundColor={backgroundColor}
 					backgroundImage={backgroundImage}
@@ -51,6 +52,7 @@ const Layout = ({
 				{children}
 			</Main>
 			<StoryblokComponent
+				{...storyblokEditable(footerNode)}
 				blok={{
 					component: 'footer',
 					...footerNode,

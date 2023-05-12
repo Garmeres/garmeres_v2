@@ -2,11 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import variables from '../../../styles/variables';
 import { DynamicFeaturedComponent } from './featured-components';
+import { storyblokEditable } from 'gatsby-source-storyblok';
 
 const PageFeatured = styled((props) => {
 	let i = 0;
 	return props.blok.body.length > 0 ? (
-		<div {...props}>
+		<div
+			{...props}
+			{...storyblokEditable(props.blok)}
+		>
 			{props.blok.body.map((featuredItem) => (
 				<DynamicFeaturedComponent
 					key={i++}

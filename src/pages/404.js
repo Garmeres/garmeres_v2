@@ -1,49 +1,7 @@
 import React from 'react';
 import Layout from '../components/layout';
 import { graphql } from 'gatsby';
-import RichText from '../components/storyblok/rich-text';
-import styled from 'styled-components';
-import variables from '../styles/variables';
-import { useStoryblokState } from 'gatsby-source-storyblok';
-
-const NotFoundRichText = styled((props) => <RichText {...props} />)`
-	--page-content-width: ${variables.pageContentWidthDefault};
-	width: var(--page-content-width);
-	min-width: var(--page-content-width);
-	max-width: var(--page-content-width);
-	background-color: var(--bg-color-article);
-	min-height: 50vh;
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	margin: 0 auto;
-	flex-grow: 1;
-	box-sizing: border-box;
-	border-radius: 4px;
-	padding: 10vh 5vw;
-
-	@media screen and (max-width: ${variables.screenWidthExtraLarge}) {
-		--page-content-width: ${variables.pageContentWidthExtraLarge};
-	}
-	@media screen and (max-width: ${variables.screenWidthLarge}) {
-		--page-content-width: ${variables.pageContentWidthLarge};
-	}
-	@media screen and (max-width: ${variables.screenWidthMediumLarge}) {
-		--page-content-width: ${variables.pageContentWidthMediumLarge};
-	}
-	@media screen and (max-width: ${variables.screenWidthMedium}) {
-		--page-content-width: ${variables.pageContentWidthMedium};
-	}
-	@media screen and (max-width: ${variables.screenWidthMediumSmall}) {
-		--page-content-width: ${variables.pageContentWidthMediumSmall};
-	}
-	@media screen and (max-width: ${variables.screenWidthSmall}) {
-		--page-content-width: ${variables.pageContentWidthSmall};
-	}
-	@media screen and (max-width: ${variables.screenWidthExtraSmall}) {
-		--page-content-width: ${variables.pageContentWidthExtraSmall};
-	}
-`;
+import { StoryblokComponent, useStoryblokState } from 'gatsby-source-storyblok';
 
 const NotFoundPage = (props) => {
 	const langs = props.data.notFoundNodes.edges.map(({ node }) => node.lang);
@@ -51,26 +9,39 @@ const NotFoundPage = (props) => {
 		props.location.pathname
 			.split('/')
 			.filter((i) => i !== 'default' && langs.includes(i))[0] || 'default';
-	let homePage = props.data.homePages.edges.find(
-		({ node }) => node.lang === lang
-	).node;
-	homePage = useStoryblokState(homePage);
-	let menuNode = props.data.menuNodes.edges.find(
-		({ node }) => node.lang === lang
-	).node;
-	menuNode = useStoryblokState(menuNode);
-	let notFoundNode = props.data.notFoundNodes.edges.find(
-		({ node }) => node.lang === lang
-	).node;
-	notFoundNode = useStoryblokState(notFoundNode);
+
+	const homePage = useStoryblokState(
+		props.data.homePages.edges.find(({ node }) => node.lang === lang).node
+	);
+	const menuNode = useStoryblokState(
+		props.data.menuNodes.edges.find(({ node }) => node.lang === lang).node
+	);
+	const footerNode = useStoryblokState(
+		props.data.footerNodes.edges.find(({ node }) => node.lang === lang).node
+	);
+	const notFoundNode = useStoryblokState(
+		props.data.notFoundNodes.edges.find(({ node }) => node.lang === lang).node
+	);
+
 	return (
 		<Layout
 			homeSlug={`/${homePage.full_slug}`}
 			menuNode={menuNode}
+			footerNode={footerNode}
 			source={notFoundNode}
 			backgroundColor='black'
 		>
-			<NotFoundRichText document={notFoundNode.content.body} />
+			<StoryblokComponent
+				blok={{
+					component: 'rich_text',
+					text: {
+						...notFoundNode.content.body,
+					},
+				}}
+				key={notFoundNode._uid}
+				source={notFoundNode}
+				className='not-found'
+			/>
 		</Layout>
 	);
 };
@@ -152,6 +123,17 @@ export const query = graphql`
 							path
 						}
 					}
+				}
+			}
+		}
+		footerNodes: allStoryblokEntry(
+			filter: { field_component: { eq: "footer" } }
+		) {
+			edges {
+				node {
+					lang
+					full_slug
+					content
 				}
 			}
 		}

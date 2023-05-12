@@ -3,12 +3,13 @@ import Seo from '../components/seo';
 import { graphql } from 'gatsby';
 import { getImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
-import { DynamicPageComponent } from '../components/page-components';
-import { useStoryblokState } from 'gatsby-source-storyblok';
+import { StoryblokComponent, useStoryblokState } from 'gatsby-source-storyblok';
 
-const Page = ({ data }) => {
+const Page = (props) => {
+	const { data } = props;
 	const page = useStoryblokState(data.page);
 	const menu = useStoryblokState(data.menu);
+	const footer = useStoryblokState(data.footer);
 	const homePage = useStoryblokState(data.homePage);
 	const bgImageBlok = page.content.background_image;
 	const bgGatsbyImage =
@@ -19,12 +20,11 @@ const Page = ({ data }) => {
 					)
 			  )
 			: null;
-
-	let i = 0;
 	return (
 		<Layout
 			homeSlug={`/${homePage.full_slug}`}
 			menuNode={menu}
+			footerNode={footer}
 			source={page}
 			backgroundImage={bgGatsbyImage}
 			backgroundImageAlt={bgImageBlok != null ? bgImageBlok.alt : null}
@@ -34,10 +34,11 @@ const Page = ({ data }) => {
 			backgroundColor={page.content.background_color.color}
 		>
 			{page.content.body.map((bodyItem) => (
-				<DynamicPageComponent
-					key={i++}
-					{...bodyItem}
+				<StoryblokComponent
+					blok={bodyItem}
+					key={bodyItem._uid}
 					source={page}
+					className='page'
 				/>
 			))}
 		</Layout>
@@ -111,6 +112,14 @@ export const query = graphql`
 					path
 				}
 			}
+		}
+		footer: storyblokEntry(
+			lang: { eq: $lang }
+			field_component: { eq: "footer" }
+		) {
+			lang
+			full_slug
+			content
 		}
 		homePage: storyblokEntry(
 			lang: { eq: $lang }

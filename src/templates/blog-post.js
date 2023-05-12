@@ -3,21 +3,22 @@ import { useStoryblokState } from 'gatsby-source-storyblok';
 import Seo from '../components/seo';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import { DynamicBlogPostComponent } from '../components/blog-post-components';
 import BlogPostThumbnail from '../components/blog-post-components/blog-post-thumbnail';
 import BlogPostContentContainer from '../components/blog-post-components/blog-post-content-container';
 import BlogPostTitle from '../components/blog-post-components/blog-post-title';
 import BlogPostDateAndAuthor from '../components/blog-post-components/blog-post-date-and-author';
+import { StoryblokComponent } from 'gatsby-source-storyblok';
 
 const BlogPost = ({ data }) => {
 	const blogPost = useStoryblokState(data.blogPost);
 	const menu = useStoryblokState(data.menu);
+	const footer = useStoryblokState(data.footer);
 	const homePage = useStoryblokState(data.homePage);
-	let i = 0;
 	return (
 		<Layout
 			homeSlug={`/${homePage.full_slug}`}
 			menuNode={menu}
+			footerNode={footer}
 			source={blogPost}
 			backgroundColor='black'
 		>
@@ -26,10 +27,11 @@ const BlogPost = ({ data }) => {
 				<BlogPostTitle source={blogPost} />
 				<BlogPostDateAndAuthor source={blogPost} />
 				{blogPost.content.body.map((bodyItem) => (
-					<DynamicBlogPostComponent
-						key={i++}
-						{...bodyItem}
+					<StoryblokComponent
+						blok={bodyItem}
+						key={bodyItem._uid}
 						source={blogPost}
+						className='blog-post'
 					/>
 				))}
 			</BlogPostContentContainer>
@@ -105,6 +107,14 @@ export const query = graphql`
 					path
 				}
 			}
+		}
+		footer: storyblokEntry(
+			lang: { eq: $lang }
+			field_component: { eq: "footer" }
+		) {
+			lang
+			full_slug
+			content
 		}
 		homePage: storyblokEntry(
 			lang: { eq: $lang }

@@ -1,9 +1,7 @@
-/**
- * @type {import('gatsby').GatsbyConfig}
- */
 require('dotenv').config({
-	path: `.env.${process.env.NODE_ENV}`,
+	path: `.env.${process.env.NODE_ENV || 'production'}`,
 });
+
 module.exports = {
 	siteMetadata: {
 		title: `Garmeres`,

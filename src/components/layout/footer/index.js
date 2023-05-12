@@ -8,7 +8,7 @@ const StyledFooter = styled.footer`
 	--footer-height: 300px;
 	color: var(--text-color-light);
 	background-color: var(--bg-color-medium);
-	font-size: var(--paragraph-font-size-medium);
+	font-size: var(--font-size-extra-small);
 	display: flex;
 	justify-content: center;
 	width: 100vw;

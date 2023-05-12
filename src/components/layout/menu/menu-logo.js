@@ -10,7 +10,6 @@ const LogoLink = styled((props) => (
 		to={props.homeslug}
 	/>
 ))`
-	--logo-font-size: 22pt;
 	--logo-size: 70px;
 	height: 100%;
 	width: fit-content;
@@ -20,6 +19,9 @@ const LogoLink = styled((props) => (
 
 	@media screen and (max-width: ${variables.screenWidthMediumLarge}) {
 		--logo-size: 60px;
+	}
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		--logo-size: 50px;
 	}
 `;
 
@@ -33,12 +35,17 @@ const LogoImage = styled((props) => <GatsbyImage {...props} />)`
 
 const LogoText = styled.span`
 	color: var(--text-color-light);
-	font-size: var(--logo-font-size);
+	font-size: var(--font-size-medium-large);
 	display: flex;
 	vertical-align: middle;
 	align-items: center;
 	justify-content: center;
-	margin-left: 25px;
+	margin-left: 0.7em;
+
+	@media screen and (max-width: ${variables.screenWidthMediumLarge}) {
+		font-size: var(--font-size-medium-large);
+		margin-left: 0.5em;
+	}
 `;
 
 const getLogoImageNode = (menuNode) =>

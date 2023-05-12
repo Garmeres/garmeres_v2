@@ -4,50 +4,36 @@ import { Link } from 'gatsby';
 import variables from '../../../styles/variables';
 
 const H1 = styled.h1`
-	font-size: 42pt;
+	font-size: var(--font-size-extra-large);
 	font-family: 'Quicksand' !important;
 	font-weight: 400;
-	margin: 16pt auto;
-
-	@media screen and ((max-height: ${variables.screenWidthMedium}) or (max-width: ${variables.screenWidthMediumLarge})) {
-		font-size: 36pt;
-		margin: 15pt auto;
-	}
-	@media screen and ((max-height: ${variables.screenWidthSmall}) or (max-width: ${variables.screenWidthMedium})) {
-		font-size: 32pt;
-		margin: 14pt auto;
+	@media screen and ((max-width: ${variables.screenWidthSmall}) or (max-height: ${variables.screenWidthSmall})) {
+		font-size: var(--font-size-large);
 	}
 `;
 const P = styled.p`
-	font-size: 14pt;
+	font-size: var(--font-size-medium-small);
 	font-family: 'Quicksand' !important;
 	font-weight: 500;
-	margin: 16pt auto;
-	@media screen and ((max-height: ${variables.screenWidthMedium}) or (max-width: ${variables.screenWidthMediumLarge})) {
-		font-size: 13pt;
-		margin: 15pt auto;
-	}
-	@media screen and ((max-height: ${variables.screenWidthSmall}) or (max-width: ${variables.screenWidthMedium})) {
-		font-size: 12pt;
-		margin: 14pt auto;
+	margin: var(--font-size-medium-small) auto;
+	@media screen and ((max-width: ${variables.screenWidthSmall}) or (max-height: ${variables.screenWidthSmall})) {
+		font-size: var(--font-size-small);
+		margin: var(--font-size-small) auto;
 	}
 `;
 const CallToAction = styled((props) => <Link {...props} />)`
 	font-family: 'Quicksand' !important;
+	font-size: var(--font-size-medium-small);
 	text-decoration: none;
 	background-color: #000000;
-	margin: 16pt auto;
+	margin: var(--font-size-medium-small) auto;
 	padding: 10px;
 	color: white;
 	min-width: 10vw;
 	border-radius: 5px;
-	@media screen and ((max-height: ${variables.screenWidthMedium}) or (max-width: ${variables.screenWidthMediumLarge})) {
-		font-size: 13pt;
-		margin: 15pt auto;
-	}
-	@media screen and ((max-height: ${variables.screenWidthSmall}) or (max-width: ${variables.screenWidthMedium})) {
-		font-size: 12pt;
-		margin: 14pt auto;
+	@media screen and ((max-width: ${variables.screenWidthSmall}) or (max-height: ${variables.screenWidthSmall})) {
+		font-size: var(--font-size-small);
+		margin: var(--font-size-small) auto;
 	}
 `;
 

@@ -13,7 +13,7 @@ const BlogPostTitle = styled((props) => {
 	}
 	return <h2 {...props}>{title}</h2>;
 })`
-	font-size: 1.2em;
+	font-size: var(--font-size-medium-small);
 	margin: 1.2em 0;
 `;
 

@@ -15,7 +15,7 @@ const BlogPostDate = styled((props) => {
 	return <span {...props}>{`${day}.${month}.${year}`}</span>;
 })`
 	opacity: 0.8;
-	font-size: 1em;
+	font-size: var(--font-size-extra-small);
 `;
 
 export default BlogPostDate;

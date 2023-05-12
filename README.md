@@ -18,6 +18,19 @@ GATSBY_STORYBLOK_API_URL=
 GATSBY_STORYBLOK_ACCESS_TOKEN=
 ```
 
+### HTTPS proxy
+
+If you want to run a HTTPS-proxy for your localhost, first install it by running `npm run install-https-proxy`.
+Then you can run the proxy by using one of the following commands:
+
+#### localhost:8010 -> localhost:8000
+
+`npm run https-proxy-dev`
+
+#### localhost:9010 -> localhost:9000
+
+`npm run https-proxy`
+
 ## Deploy to production
 
 This project is still in development, and has not been released to production.

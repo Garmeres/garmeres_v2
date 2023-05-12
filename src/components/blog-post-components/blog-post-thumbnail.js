@@ -4,7 +4,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import variables from '../../styles/variables';
 
 const ThumbnailCopyright = styled((props) => {
-	const copyright = JSON.parse(props.source.content).thumbnail.copyright;
+	const copyright = props.source.content.thumbnail.copyright;
 	return copyright != null && copyright !== '' ? (
 		<span {...props}>{copyright}</span>
 	) : null;
@@ -13,7 +13,7 @@ const ThumbnailCopyright = styled((props) => {
 `;
 
 const ThumbnailImage = (props) => {
-	const imgBlok = JSON.parse(props.source.content).thumbnail;
+	const imgBlok = props.source.content.thumbnail;
 	const thumbnailImage = props.source.imageFiles.find(
 		(item) => item.url === imgBlok.filename
 	);

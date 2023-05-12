@@ -1,4 +1,5 @@
 import React from 'react';
+import { useStoryblokState } from 'gatsby-source-storyblok';
 import Seo from '../components/seo';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
@@ -9,23 +10,26 @@ import BlogPostTitle from '../components/blog-post-components/blog-post-title';
 import BlogPostDateAndAuthor from '../components/blog-post-components/blog-post-date-and-author';
 
 const BlogPost = ({ data }) => {
+	const blogPost = useStoryblokState(data.blogPost);
+	const menu = useStoryblokState(data.menu);
+	const homePage = useStoryblokState(data.homePage);
 	let i = 0;
 	return (
 		<Layout
-			homeSlug={`/${data.homePage.full_slug}`}
-			menuNode={data.menu}
-			source={data.blogPost}
+			homeSlug={`/${homePage.full_slug}`}
+			menuNode={menu}
+			source={blogPost}
 			backgroundColor='black'
 		>
 			<BlogPostContentContainer>
-				<BlogPostThumbnail source={data.blogPost} />
-				<BlogPostTitle source={data.blogPost} />
-				<BlogPostDateAndAuthor source={data.blogPost} />
-				{JSON.parse(data.blogPost.content).body.map((bodyItem) => (
+				<BlogPostThumbnail source={blogPost} />
+				<BlogPostTitle source={blogPost} />
+				<BlogPostDateAndAuthor source={blogPost} />
+				{blogPost.content.body.map((bodyItem) => (
 					<DynamicBlogPostComponent
 						key={i++}
 						{...bodyItem}
-						source={data.blogPost}
+						source={blogPost}
 					/>
 				))}
 			</BlogPostContentContainer>
@@ -35,7 +39,9 @@ const BlogPost = ({ data }) => {
 
 export default BlogPost;
 
-export const Head = ({ data }) => <Seo seoNode={data.blogPost.seo} />;
+export const Head = ({ data }) => (
+	<Seo seoNode={useStoryblokState(data.blogPost).seo} />
+);
 
 export const query = graphql`
 	query ($id: String, $lang: String) {

@@ -3,6 +3,15 @@ import Menu from './menu';
 import styled from 'styled-components';
 import Footer from './footer';
 import LayoutBackground from './layout-background';
+import { storyblokInit, apiPlugin } from 'gatsby-source-storyblok';
+
+storyblokInit({
+	accessToken: process.env.GATSBY_STORYBLOK_ACCESS_TOKEN,
+	use: [apiPlugin],
+	components: {
+		// components
+	},
+});
 
 const LayoutContainer = styled.div`
 	display: flex;

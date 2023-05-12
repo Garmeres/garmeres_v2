@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import RichText from '../components/storyblok/rich-text';
 import styled from 'styled-components';
 import variables from '../styles/variables';
+import { useStoryblokState } from 'gatsby-source-storyblok';
 
 const NotFoundRichText = styled((props) => <RichText {...props} />)`
 	--page-content-width: ${variables.pageContentWidthDefault};
@@ -50,15 +51,18 @@ const NotFoundPage = (props) => {
 		props.location.pathname
 			.split('/')
 			.filter((i) => i !== 'default' && langs.includes(i))[0] || 'default';
-	const homePage = props.data.homePages.edges.find(
+	let homePage = props.data.homePages.edges.find(
 		({ node }) => node.lang === lang
 	).node;
-	const menuNode = props.data.menuNodes.edges.find(
+	homePage = useStoryblokState(homePage);
+	let menuNode = props.data.menuNodes.edges.find(
 		({ node }) => node.lang === lang
 	).node;
-	const notFoundNode = props.data.notFoundNodes.edges.find(
+	menuNode = useStoryblokState(menuNode);
+	let notFoundNode = props.data.notFoundNodes.edges.find(
 		({ node }) => node.lang === lang
 	).node;
+	notFoundNode = useStoryblokState(notFoundNode);
 	return (
 		<Layout
 			homeSlug={`/${homePage.full_slug}`}
@@ -66,7 +70,7 @@ const NotFoundPage = (props) => {
 			source={notFoundNode}
 			backgroundColor='black'
 		>
-			<NotFoundRichText document={JSON.parse(notFoundNode.content).body} />
+			<NotFoundRichText document={notFoundNode.content.body} />
 		</Layout>
 	);
 };
@@ -79,9 +83,10 @@ export const Head = (props) => {
 		props.location.pathname
 			.split('/')
 			.filter((i) => i !== 'default' && langs.includes(i))[0] || 'default';
-	const notFoundNode = props.data.notFoundNodes.edges.find(
+	let notFoundNode = props.data.notFoundNodes.edges.find(
 		({ node }) => node.lang === lang
 	).node;
+	notFoundNode = useStoryblokState(notFoundNode);
 	return (
 		<>
 			<title>

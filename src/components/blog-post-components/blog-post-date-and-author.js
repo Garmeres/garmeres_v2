@@ -13,7 +13,7 @@ const BlogPostDateAndAuthor = styled((props) => {
 		useGrouping: false,
 	});
 	const year = date.getFullYear();
-	const author = JSON.parse(props.source.content).author;
+	const author = props.source.content.author;
 	const authorString = author != null && author !== '' ? ` - ${author}` : '';
 	return <span {...props}>{`${day}.${month}.${year}${authorString}`}</span>;
 })`

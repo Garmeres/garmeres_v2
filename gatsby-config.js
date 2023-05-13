@@ -11,6 +11,18 @@ module.exports = {
 		lang: 'en',
 	},
 	plugins: [
+		{
+			resolve: `gatsby-plugin-google-gtag`,
+			options: {
+				trackingIds: [process.env.GATSBY_GOOGLE_GTAG],
+				pluginConfig: {
+					head: true,
+				},
+				gtagConfig: {
+					anonymize_ip: true,
+				},
+			},
+		},
 		'gatsby-plugin-styled-components',
 		'gatsby-plugin-image',
 		'gatsby-plugin-sitemap',

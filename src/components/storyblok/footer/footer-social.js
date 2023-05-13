@@ -2,6 +2,7 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import SocialIcon from './footer-social-icon';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 const Social = styled.div`
 	--social-icon-size: 30px;
@@ -12,7 +13,7 @@ const Social = styled.div`
 	justify-content: center;
 `;
 
-const SocialLink = styled.a`
+const SocialLink = styled((props) => <OutboundLink {...props} />)`
 	width: var(--social-icon-size);
 	height: var(--social-icon-size);
 	color: inherit;

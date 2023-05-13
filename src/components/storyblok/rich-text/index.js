@@ -95,7 +95,7 @@ const RichText = styled((props) => {
 		min-width: var(--page-content-width);
 		max-width: var(--page-content-width);
 		background-color: var(--bg-color-article);
-		min-height: 50vh;
+		min-height: 75vh;
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -107,16 +107,6 @@ const RichText = styled((props) => {
 
 		* {
 			outline-color: var(--highlight-color-dark);
-		}
-
-		&:nth-child(2) {
-			margin-top: 25vh;
-			@media screen and (max-width: ${variables.screenWidthLarge}) {
-				margin-top: 30vh;
-			}
-			@media screen and (max-width: ${variables.screenWidthMedium}) {
-				margin-top: 40vh;
-			}
 		}
 
 		${pageContentWidthStyling}

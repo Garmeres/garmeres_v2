@@ -11,20 +11,22 @@ const BakgroundImage = styled((props) => (
 ))`
 	position: relative;
 	top: 0;
-	height: auto;
+	height: 100%;
 	width: 100%;
 	filter: blur(1px);
 	left: 0;
 	right: 0;
 	bottom: 0;
 	object-fit: cover;
-	max-height: 75vh;
 	opacity: 1;
 	border: none;
 	background-size: auto 100%;
+	max-height: 90vh;
 	@media screen and (max-width: ${variables.screenWidthMedium}) {
-		min-height: 40vh;
-		max-height: 50vh;
+		max-height: 75vh;
+	}
+	@media screen and (max-width: ${variables.screenWidthExtraSmall}) {
+		max-height: 90vh;
 	}
 `;
 

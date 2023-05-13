@@ -14,10 +14,13 @@ const BlogPostsContainer = styled.div`
 	flex-wrap: wrap;
 	flex-grow: 1;
 	box-sizing: border-box;
-	padding: 15vh 5vw 5vh 5vw;
+	padding: 150px 5vw 5vh 5vw;
 
-	@media screen and (max-width: ${variables.screenWidthExtraSmall}) {
-		padding: 10vh 5vw 5vh 5vw;
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		padding: 100px 5vw 5vh 5vw;
+	}
+	@media screen and (max-height: ${variables.screenWidthMediumSmall}) {
+		padding: 100px 5vw 5vh 5vw;
 	}
 `;
 

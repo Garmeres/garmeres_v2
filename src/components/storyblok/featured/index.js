@@ -39,6 +39,13 @@ const PageFeatured = styled((props) => {
 		@media screen and (max-width: ${variables.screenWidthMedium}) {
 			margin: 10vh auto;
 		}
+		@media screen and (min-width: ${variables.screenWidthExtraLarge}) {
+			min-height: 500px;
+		}
+		@media screen and (min-height: ${variables.screenWidthExtraLarge}) {
+			min-height: 600px;
+			margin: 200px auto;
+		}
 	}
 	@media screen and (max-width: ${variables.screenWidthMedium}) {
 		--horizontal-padding: 10vw;

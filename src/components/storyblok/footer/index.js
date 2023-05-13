@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import FooterSocial from './footer-social';
 import RichText from '../rich-text';
+import { storyblokEditable } from 'gatsby-source-storyblok';
 
 const StyledFooter = styled.footer`
 	--footer-height: 300px;
@@ -29,7 +30,7 @@ const FooterBackgroundCopyright = styled.p`
 `;
 
 const Footer = (props) => (
-	<StyledFooter>
+	<StyledFooter {...storyblokEditable(props.blok)}>
 		<FooterInnerContainer>
 			<FooterSocial lang={props.lang} />
 			{props.backgroundImageCopyright != null ? (

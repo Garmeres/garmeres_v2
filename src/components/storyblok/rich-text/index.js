@@ -3,6 +3,7 @@ import { render, NODE_IMAGE } from 'storyblok-rich-text-react-renderer';
 import RichTextImage from './rich-text-image';
 import styled from 'styled-components';
 import variables from '../../../styles/variables';
+import { storyblokEditable } from 'gatsby-source-storyblok';
 
 const pageContentWidthStyling = `
 	@media screen and (max-width: ${variables.screenWidthExtraLarge}) {
@@ -30,7 +31,10 @@ const pageContentWidthStyling = `
 
 const RichText = styled((props) => {
 	return (
-		<div {...props}>
+		<div
+			{...props}
+			{...storyblokEditable(props.blok)}
+		>
 			{render(props.blok.text, {
 				nodeResolvers: {
 					[NODE_IMAGE]: (children, p) => (

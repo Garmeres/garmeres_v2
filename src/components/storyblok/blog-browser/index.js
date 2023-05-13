@@ -5,6 +5,7 @@ import BlogPost from './blog-post';
 import { fetchBlogPosts } from './helpers';
 import { getHexWithAlpha } from '../../../../helpers/storyblok-helpers/color-helpers';
 import ShowMoreMutton from './show-more-button';
+import { storyblokEditable } from 'gatsby-source-storyblok';
 
 const BlogPostsContainer = styled.div`
 	display: flex;
@@ -51,7 +52,10 @@ const BlogBrowser = styled((props) => {
 	]);
 
 	return (
-		<div {...props}>
+		<div
+			{...props}
+			{...storyblokEditable(props.blok)}
+		>
 			<BlogPostsContainer>
 				{blogPosts.map((blogPost) => (
 					<BlogPost

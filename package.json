@@ -22,7 +22,10 @@
 		"serve": "gatsby serve",
 		"clean": "gatsby clean",
 		"commit": "npx git-cz",
-		"clean-start": "npm run clean && npm start"
+		"clean-start": "npm run clean && npm start",
+		"install-https-proxy": "sh dev/install-https-proxy.sh",
+		"https-proxy": "sh dev/run-https-proxy.sh",
+		"https-proxy-dev": "sh dev/run-https-proxy-dev.sh"
 	},
 	"dependencies": {
 		"@storyblok/js": "^2.1.4",

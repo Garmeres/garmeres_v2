@@ -1,0 +1,1 @@
+local-ssl-proxy --source 9010 --target 9000 --cert localhost.pem --key localhost-key.pem

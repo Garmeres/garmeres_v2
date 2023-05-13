@@ -31,6 +31,8 @@ const CallToAction = styled((props) => <Link {...props} />)`
 	color: white;
 	min-width: 10vw;
 	border-radius: 5px;
+	outline-color: red;
+
 	@media screen and ((max-width: ${variables.screenWidthSmall}) or (max-height: ${variables.screenWidthSmall})) {
 		font-size: var(--font-size-small);
 		margin: var(--font-size-small) auto;

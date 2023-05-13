@@ -62,6 +62,9 @@ const RichText = styled((props) => {
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
+		* {
+			outline-color: var(--highlight-color-dark);
+		}
 	}
 
 	&.not-found {
@@ -79,6 +82,9 @@ const RichText = styled((props) => {
 		box-sizing: border-box;
 		border-radius: 4px;
 		padding: 10vh 5vw;
+		* {
+			outline-color: var(--highlight-color-dark);
+		}
 
 		${pageContentWidthStyling}
 	}
@@ -98,6 +104,10 @@ const RichText = styled((props) => {
 		box-sizing: border-box;
 		border-radius: 4px;
 		padding: 10vh 5vw;
+
+		* {
+			outline-color: var(--highlight-color-dark);
+		}
 
 		&:nth-child(2) {
 			margin-top: 25vh;

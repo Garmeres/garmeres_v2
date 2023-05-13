@@ -43,6 +43,7 @@ const ShowMoreMutton = styled((props) =>
 	font-size: var(--font-size-small);
 	margin: 0 auto;
 	width: 100%;
+	outline-color: var(--highlight-color-dark);
 	:hover {
 		background-color: ${(props) =>
 			getHexWithAlphaAndHighlight(

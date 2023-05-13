@@ -26,6 +26,7 @@ const BlogPostCard = styled((props) => (
 	--blog-post-card-padding: 30px;
 	padding: var(--blog-post-card-padding);
 	width: var(--blog-post-card-width);
+	outline-color: var(--highlight-color-light);
 
 	background-color: ${(props) =>
 		getHexWithAlpha(

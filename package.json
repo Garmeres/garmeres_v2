@@ -28,7 +28,7 @@
 		"https-proxy-dev": "sh dev/run-https-proxy-dev.sh"
 	},
 	"dependencies": {
-		"@storyblok/js": "^2.1.4",
+		"@storyblok/js": "^2.1.6",
 		"babel-plugin-styled-components": "^2.1.1",
 		"gatsby": "^5.8.1",
 		"gatsby-omni-font-loader": "^2.0.2",

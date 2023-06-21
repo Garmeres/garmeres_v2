@@ -12,15 +12,16 @@ module.exports = {
 	},
 	plugins: [
 		{
-			resolve: `gatsby-plugin-google-gtag`,
+			resolve: `gatsby-plugin-gdpr-cookies`,
 			options: {
-				trackingIds: [process.env.GATSBY_GOOGLE_GTAG],
-				pluginConfig: {
-					head: true,
+				googleAnalytics: {
+					trackingId: process.env.GATSBY_GOOGLE_GTAG,
+					// Setting this parameter is optional
+					anonymize: true,
+					cookieName: 'gatsby-gdpr-google-analytics',
 				},
-				gtagConfig: {
-					anonymize_ip: true,
-				},
+				// Defines the environments where the tracking should be available  - default is ["production"]
+				environments: ['production', 'development'],
 			},
 		},
 		'gatsby-plugin-styled-components',

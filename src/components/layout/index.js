@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import LayoutBackground from './layout-background';
 import StoryblokWrapper from '../storyblok';
 import { StoryblokComponent, storyblokEditable } from 'gatsby-source-storyblok';
+import CookieConsent from 'react-cookie-consent';
+import { Link } from 'gatsby';
 
 const LayoutContainer = styled.div`
 	display: flex;
@@ -35,6 +37,19 @@ const Layout = ({
 	backgroundImageCopyright,
 }) => (
 	<StoryblokWrapper>
+		<CookieConsent
+			location='bottom'
+			buttonText='Accept'
+			declineButtonText='Decline'
+			cookieName='gatsby-gdpr-google-analytics'
+		>
+			<p>
+				This site uses Google Analytics 4 to collect anonymised usage data. By
+				clicking the "Accept" button, you consent to the use of cookies and data
+				collection. For more information, please review our{' '}
+				<Link to='/privacy-policy'>Privacy policy</Link>.
+			</p>
+		</CookieConsent>
 		<LayoutContainer>
 			<Menu
 				{...storyblokEditable(menuNode)}

@@ -51,7 +51,7 @@
 		"react-icons": "^4.10.1",
 		"react-spinners": "^0.13.8",
 		"storyblok-rich-text-react-renderer": "^2.8.0",
-		"styled-components": "^5.3.11"
+		"styled-components": "^6.0.2"
 	},
 	"devDependencies": {
 		"git-cz": "^4.9.0"

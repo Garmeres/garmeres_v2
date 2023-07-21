@@ -4,6 +4,7 @@ import RichTextImage from './rich-text-image';
 import styled from 'styled-components';
 import variables from '../../../styles/variables';
 import { storyblokEditable } from 'gatsby-source-storyblok';
+import EventsBrowser from '../events-browser';
 
 const pageContentWidthStyling = `
 	@media screen and (max-width: ${variables.screenWidthExtraLarge}) {
@@ -44,6 +45,9 @@ const RichText = styled((props) => {
 							source={props.source}
 						/>
 					),
+				},
+				blokResolvers: {
+					['events-browser']: (props) => <EventsBrowser {...props} />,
 				},
 			})}
 		</div>
@@ -95,7 +99,6 @@ const RichText = styled((props) => {
 		min-width: var(--page-content-width);
 		max-width: var(--page-content-width);
 		background-color: var(--bg-color-article);
-		min-height: 75vh;
 		position: relative;
 		display: flex;
 		flex-direction: column;

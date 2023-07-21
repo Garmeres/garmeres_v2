@@ -3,6 +3,7 @@ import BlogBrowser from './blog-browser';
 import Featured from './featured';
 import RichText from './rich-text';
 import Footer from './footer';
+import EventsBrowser from './events-browser';
 
 storyblokInit({
 	accessToken: process.env.GATSBY_STORYBLOK_ACCESS_TOKEN,
@@ -13,6 +14,7 @@ storyblokInit({
 		rich_text: RichText,
 		footer: Footer,
 		grid: () => null,
+		'events-browser': EventsBrowser,
 	},
 });
 

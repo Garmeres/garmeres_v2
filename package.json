@@ -42,7 +42,6 @@
 		"gatsby-source-filesystem": "^5.11.0",
 		"gatsby-source-storyblok": "^5.0.21",
 		"gatsby-transformer-sharp": "^5.8.0",
-		"install": "^0.13.0",
 		"npm": "^9.8.0",
 		"react": "^18.2.0",
 		"react-cookie-consent": "^8.0.1",
@@ -51,7 +50,7 @@
 		"react-icons": "^4.10.1",
 		"react-spinners": "^0.13.8",
 		"storyblok-rich-text-react-renderer": "^2.8.0",
-		"styled-components": "^6.0.2"
+		"styled-components": "^6.0.4"
 	},
 	"devDependencies": {
 		"git-cz": "^4.9.0"

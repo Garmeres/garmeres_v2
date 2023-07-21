@@ -5,29 +5,48 @@ import {
 	IoTimeOutline,
 	IoTimerOutline,
 } from 'react-icons/io5';
-import {
-	getDurationString,
-	getTimeStringFromDatetime,
-	getTimeString,
-} from '../helpers/string-formatter';
+import { getDurationString, getTimeString } from '../helpers/string-formatter';
+import variables from '../../../../styles/variables';
 
 const Container = styled.div`
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
+	white-space: wrap;
+
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		flex-direction: column;
+	}
 `;
 
 const TimeLocationContainer = styled.div`
-	display: flex;
+	display: inline-flex;
 	flex-direction: row;
 
-	margin-left: 20px;
-	&:first-child {
-		margin-left: 0;
+	margin-right: 20px;
+	&:last-child {
+		margin-right: 0;
+	}
+
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		margin-right: 10px;
+		&:last-child {
+			margin-right: 0;
+		}
 	}
 
 	* {
 		color: var(--bg-color-light);
 	}
+	max-height: 1.5em;
+	white-space: nowrap;
+`;
+
+const Span = styled.span`
+	display: inline-block;
+	font-size: var(--font-size-extra-small);
+	overflow: hidden;
+	white-space: nowrap;
 `;
 
 const TimeString = ({ start, end, duration }) => {
@@ -55,7 +74,7 @@ const DurationString = ({ duration }) => {
 					margin: 'auto 5px auto 0',
 				}}
 			/>
-			<span>{getDurationString(duration)}</span>
+			<Span>{getDurationString(duration)}</Span>
 		</TimeLocationContainer>
 	) : null;
 };
@@ -69,7 +88,7 @@ const LocationString = ({ location }) =>
 					margin: 'auto 5px auto 0',
 				}}
 			/>
-			<span>{location}</span>
+			<Span>{location}</Span>
 		</TimeLocationContainer>
 	) : null;
 

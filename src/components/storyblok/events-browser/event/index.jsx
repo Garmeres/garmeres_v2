@@ -4,6 +4,7 @@ import { eventObserver } from '../helpers/event-click';
 import EventAccordionArrow from './accordion-arrow';
 import DateBox from './date-box';
 import TimeAndLocation from './time-and-location';
+import variables from '../../../../styles/variables';
 
 const Container = styled.div`
 	:hover {
@@ -23,16 +24,22 @@ const Details = styled.details`
 
 const Summary = styled.summary`
 	height: 60px;
-	max-height: 60px;
 	display: flex;
 	flex-direction: row;
 	list-style: none;
+	box-sizing: border-box;
+
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		height: 75px;
+	}
+
+	overflow: hidden;
 `;
 
 const EventSummaryText = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
 	flex-grow: 1;
 `;
 
@@ -41,6 +48,11 @@ const EventName = styled.h3`
 	padding: 0;
 	margin: 0;
 	font-weight: 500;
+	white-space: nowrap;
+
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		font-size: var(--font-size-small);
+	}
 `;
 
 const Body = styled.p`

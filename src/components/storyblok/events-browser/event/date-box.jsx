@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import variables from '../../../../styles/variables';
 
 const Container = styled.div`
 	display: flex;
@@ -7,6 +8,10 @@ const Container = styled.div`
 	height: 60px;
 	padding-right: 2px;
 	margin-right: 10px;
+
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		height: 75px;
+	}
 `;
 
 const Border = styled.div`

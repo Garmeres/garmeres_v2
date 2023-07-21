@@ -1,14 +1,25 @@
 import { IoChevronDownSharp, IoChevronUpSharp } from 'react-icons/io5';
 import React from 'react';
 import styled from 'styled-components';
+import variables from '../../../../styles/variables';
 
 const Container = styled.div`
-	display: flex;
+	--arrow-btn-width: 60px;
+	--arrow-btn-height: 60px;
+	display: inline-flex;
 	justify-content: center;
-	justify-self: flex-end;
-	margin-left: auto;
-	width: 50px;
-	height: 50px;
+
+	width: var(--arrow-btn-width);
+	min-width: var(--arrow-btn-width);
+	max-width: var(--arrow-btn-width);
+
+	height: var(--arrow-btn-height);
+	min-height: var(--arrow-btn-height);
+	max-height: var(--arrow-btn-height);
+
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		--arrow-btn-height: 75px;
+	}
 `;
 
 export default function EventAccordionArrow({ isOpen }) {

@@ -6,12 +6,6 @@ import DateBox from './date-box';
 import TimeAndLocation from './time-and-location';
 import variables from '../../../../styles/variables';
 
-const Container = styled.div`
-	:hover {
-		cursor: pointer;
-	}
-`;
-
 const Details = styled.details`
 	box-sizing: border-box;
 	background-color: white;
@@ -34,6 +28,9 @@ const Summary = styled.summary`
 	}
 
 	overflow: hidden;
+	:hover {
+		cursor: pointer;
+	}
 `;
 
 const EventSummaryText = styled.div`
@@ -67,7 +64,6 @@ export default function Event(props) {
 	const observer = eventObserver(setIsOpen);
 
 	useEffect(() => {
-		console.log('Hello');
 		if (detailsRef.current) {
 			observer.observe(detailsRef.current, {
 				attributes: true,
@@ -80,29 +76,34 @@ export default function Event(props) {
 	}, []);
 
 	return (
-		<Container>
-			<Details
-				ref={detailsRef}
+		<Details
+			ref={detailsRef}
+			onClick={(e) => {
+				e.preventDefault();
+			}}
+		>
+			<Summary
 				onClick={(e) => {
 					e.preventDefault();
-					onClick(e);
+					onClick({
+						...e,
+						currentTarget: detailsRef.current,
+					});
 				}}
 			>
-				<Summary>
-					<DateBox datetime={start} />
-					<EventSummaryText>
-						<EventName>{name}</EventName>
-						<TimeAndLocation
-							location={location}
-							start={start}
-							end={end}
-							duration={duration}
-						/>
-					</EventSummaryText>
-					<EventAccordionArrow isOpen={isOpen} />
-				</Summary>
-				<Body>{description || 'No description'}</Body>
-			</Details>
-		</Container>
+				<DateBox datetime={start} />
+				<EventSummaryText>
+					<EventName>{name}</EventName>
+					<TimeAndLocation
+						location={location}
+						start={start}
+						end={end}
+						duration={duration}
+					/>
+				</EventSummaryText>
+				<EventAccordionArrow isOpen={isOpen} />
+			</Summary>
+			<Body>{description || 'No description'}</Body>
+		</Details>
 	);
 }

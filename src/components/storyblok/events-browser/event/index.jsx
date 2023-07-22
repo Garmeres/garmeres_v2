@@ -58,7 +58,18 @@ const Body = styled.p`
 
 export default function Event(props) {
 	const [isOpen, setIsOpen] = useState(false);
-	const { onClick, name, description, location, duration, start, end } = props;
+	const {
+		onClick,
+		name,
+		description,
+		location,
+		duration,
+		start,
+		end,
+		timeLabel,
+		durationLabel,
+		locationLabel,
+	} = props;
 	const detailsRef = useRef();
 
 	const observer = eventObserver(setIsOpen);
@@ -99,6 +110,9 @@ export default function Event(props) {
 						start={start}
 						end={end}
 						duration={duration}
+						timeLabel={timeLabel}
+						durationLabel={durationLabel}
+						locationLabel={locationLabel}
 					/>
 				</EventSummaryText>
 				<EventAccordionArrow isOpen={isOpen} />

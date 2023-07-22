@@ -59,6 +59,7 @@ const RightArrow = (props) => {
 		<ArrowButton
 			disabled={props.disabled}
 			onClick={props.onClick}
+			aria-label={props['aria-label']}
 		>
 			<IoChevronForward style={iconStyle} />
 		</ArrowButton>
@@ -70,6 +71,7 @@ const LeftArrow = (props) => {
 		<ArrowButton
 			disabled={props.disabled}
 			onClick={props.onClick}
+			aria-label={props['aria-label']}
 		>
 			<IoChevronBack style={iconStyle} />
 		</ArrowButton>
@@ -81,20 +83,30 @@ export default function EventsNav({
 	totalPages,
 	onNavigate,
 	disabled,
+	pageLabel,
+	nextPageLabel,
+	prevPageLabel,
 }) {
 	return totalPages > 1 ? (
 		<Container>
 			<LeftArrow
+				aria-label={prevPageLabel || 'Previous page'}
 				disabled={disabled || currentPageNumber <= 0}
 				onClick={() => {
 					if (currentPageNumber > 0) onNavigate(currentPageNumber - 1);
 				}}
 			/>
-			<PageNumberView>
-				<span>{currentPageNumber + 1}</span> <span>/</span>{' '}
-				<span>{totalPages}</span>
+			<PageNumberView
+				aria-label={`${pageLabel || 'Page'}: ${
+					currentPageNumber + 1
+				}/${totalPages}`}
+			>
+				<span aria-hidden='true'>
+					{currentPageNumber + 1}/{totalPages}
+				</span>
 			</PageNumberView>
 			<RightArrow
+				aria-label={nextPageLabel || 'Previous page'}
 				disabled={disabled || currentPageNumber + 1 >= totalPages}
 				onClick={() => {
 					if (currentPageNumber + 1 < totalPages)

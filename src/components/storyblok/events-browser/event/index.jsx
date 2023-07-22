@@ -69,6 +69,7 @@ export default function Event(props) {
 		timeLabel,
 		durationLabel,
 		locationLabel,
+		noDescriptionLabel,
 	} = props;
 	const detailsRef = useRef();
 
@@ -118,7 +119,7 @@ export default function Event(props) {
 				</EventSummaryText>
 				<EventAccordionArrow isOpen={isOpen} />
 			</Summary>
-			<Body>{description || 'No description'}</Body>
+			<Body>{description || noDescriptionLabel || 'No description'}</Body>
 		</Details>
 	);
 }

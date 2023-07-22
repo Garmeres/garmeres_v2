@@ -31,6 +31,7 @@ export default function EventsPageDisplay({
 	durationLabel,
 	locationLabel,
 	noEventsLabel,
+	noDescriptionLabel,
 }) {
 	const [maxEventsInPage, setMaxEventsInPage] = useState(0);
 	const events = page != null && page['events'] != null ? page['events'] : [];
@@ -60,6 +61,7 @@ export default function EventsPageDisplay({
 							timeLabel={timeLabel}
 							durationLabel={durationLabel}
 							locationLabel={locationLabel}
+							noDescriptionLabel={noDescriptionLabel}
 							{...event}
 						/>
 					))

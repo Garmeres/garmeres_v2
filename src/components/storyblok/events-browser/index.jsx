@@ -85,6 +85,7 @@ export default function EventsBrowser(props) {
 		time_label,
 		page_label,
 		updated_label,
+		no_description_label,
 	} = blok;
 
 	useEffect(() => {
@@ -135,6 +136,7 @@ export default function EventsBrowser(props) {
 					durationLabel={duration_label}
 					locationLabel={location_label}
 					noEventsLabel={no_events_label}
+					noDescriptionLabel={no_description_label}
 				/>
 				{pages.length > 0 ? (
 					<EventsNav

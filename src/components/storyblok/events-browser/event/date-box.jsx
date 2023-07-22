@@ -51,12 +51,17 @@ const monthNames = [
 
 export default function DateBox({ datetime, color }) {
 	const date = new Date(datetime);
+	const dateString = date.getDate();
+	const monthString = monthNames[date.getMonth()];
 	return (
-		<Container>
-			<Border color={color} />
-			<DateContainer>
-				<span>{date.getDate()}</span>
-				<span>{monthNames[date.getMonth()]}</span>
+		<Container aria-label={`${dateString} ${monthString}`}>
+			<Border
+				color={color}
+				aria-hidden='true'
+			/>
+			<DateContainer aria-hidden='true'>
+				<span>{dateString}</span>
+				<span>{monthString}</span>
 			</DateContainer>
 		</Container>
 	);

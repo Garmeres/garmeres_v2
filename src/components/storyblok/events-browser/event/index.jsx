@@ -67,6 +67,7 @@ export default function Event(props) {
 	const observer = eventObserver(setIsOpen);
 
 	useEffect(() => {
+		console.log('Hello');
 		if (detailsRef.current) {
 			observer.observe(detailsRef.current, {
 				attributes: true,

@@ -14,7 +14,7 @@ const EventsContainer = styled.div`
 	flex-direction: column;
 	margin: 20px 0;
 	min-height: calc(
-		2px + calc(92px * ${(props) => Math.max(props.maxEventsInPage, 1)})
+		2px + calc(92px * ${(props) => Math.max(props.$maxeventsinpage, 1)})
 	);
 	border: 1px solid #eee;
 	border-radius: 5px;
@@ -40,7 +40,7 @@ export default function EventsPageDisplay({ isLoading, page }) {
 		<Container>
 			<EventsContainer
 				key='events'
-				maxEventsInPage={maxEventsInPage}
+				$maxeventsinpage={maxEventsInPage}
 			>
 				{isLoading ? (
 					<EventsLoader />

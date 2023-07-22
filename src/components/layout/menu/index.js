@@ -93,7 +93,7 @@ const Menu = ({ menuNode, source, homeSlug }) => {
 					onClick={() => setMenuIsOpen(!menuIsOpen)}
 				/>
 			</HeaderHorizontalContainer>
-			<MobileNav isVisible={menuIsOpen}>
+			<MobileNav $isvisible={menuIsOpen}>
 				{menuItems.map((menuItemProps) => (
 					<MobileNavItem
 						key={i++}

@@ -2,7 +2,6 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import SocialIcon from './footer-social-icon';
-import { Link } from 'gatsby';
 
 const Social = styled.div`
 	--social-icon-size: 30px;
@@ -14,7 +13,7 @@ const Social = styled.div`
 `;
 
 const SocialLink = styled((props) => (
-	<Link
+	<a
 		rel='nofollow'
 		{...props}
 	/>
@@ -52,6 +51,7 @@ const FooterSocial = ({ lang }) => {
 			{content.items.map((item) => (
 				<SocialLink
 					key={item.name}
+					aria-label={item.name}
 					href={item.url.url}
 					{...item.url}
 				>

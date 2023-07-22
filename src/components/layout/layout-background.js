@@ -39,7 +39,7 @@ const Background = styled.div`
 	display: flex;
 	flex-grow: 1;
 	z-index: -1;
-	background-color: ${(props) => props.backgroundColor};
+	background-color: ${(props) => props.$backgroundcolor};
 	box-sizing: border-box;
 	overflow: hidden;
 `;
@@ -50,10 +50,7 @@ const LayoutBackground = ({
 	backgroundImageAlt,
 }) => {
 	return (
-		<Background
-			backgroundColor={backgroundColor}
-			hasbackgroundimage={backgroundImage != null}
-		>
+		<Background $backgroundcolor={backgroundColor}>
 			{backgroundImage != null ? (
 				<BakgroundImage
 					image={backgroundImage}

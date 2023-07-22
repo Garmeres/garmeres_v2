@@ -4,6 +4,48 @@ import { fetchEvents } from './helpers/fetch-events';
 import EventsPageDisplay from './events-display';
 import EventsNav from './events-nav';
 import LastUpdated from './last-updated';
+import variables from '../../../styles/variables';
+
+const EventsBrowserContainer = styled.div`
+	--page-content-width: ${variables.pageContentWidthDefault};
+	width: var(--page-content-width);
+	min-width: var(--page-content-width);
+	max-width: var(--page-content-width);
+	background-color: var(--bg-color-article);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	flex-grow: 1;
+	box-sizing: border-box;
+	padding: 10vh 5vw;
+
+	* {
+		outline-color: var(--highlight-color-dark);
+	}
+
+	@media screen and (max-width: ${variables.screenWidthExtraLarge}) {
+		--page-content-width: ${variables.pageContentWidthExtraLarge};
+	}
+	@media screen and (max-width: ${variables.screenWidthLarge}) {
+		--page-content-width: ${variables.pageContentWidthLarge};
+	}
+	@media screen and (max-width: ${variables.screenWidthMediumLarge}) {
+		--page-content-width: ${variables.pageContentWidthMediumLarge};
+	}
+	@media screen and (max-width: ${variables.screenWidthMedium}) {
+		--page-content-width: ${variables.pageContentWidthMedium};
+	}
+	@media screen and (max-width: ${variables.screenWidthMediumSmall}) {
+		--page-content-width: ${variables.pageContentWidthMediumSmall};
+	}
+	@media screen and (max-width: ${variables.screenWidthSmall}) {
+		--page-content-width: ${variables.pageContentWidthSmall};
+	}
+	@media screen and (max-width: ${variables.screenWidthExtraSmall}) {
+		--page-content-width: ${variables.pageContentWidthExtraSmall};
+	}
+`;
 
 const Container = styled.div`
 	display: flex;
@@ -32,7 +74,18 @@ export default function EventsBrowser(props) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [lastUpdated, setLastUpdated] = useState(null);
 
-	const { title } = props;
+	const { blok } = props;
+	const {
+		title,
+		duration_label,
+		location_label,
+		no_events_label,
+		next_page_label,
+		prev_page_label,
+		time_label,
+		page_label,
+		updated_label,
+	} = blok;
 
 	useEffect(() => {
 		async function updateEventsView() {
@@ -67,25 +120,34 @@ export default function EventsBrowser(props) {
 		pages.length > currentPageNumber ? pages[currentPageNumber] : null;
 
 	return (
-		<Container>
-			<Title>{title}</Title>
-			<LastUpdated
-				key='last-updated'
-				lastUpdated={lastUpdated}
-				updatedLabel={props['updated_label']}
-			/>
-			<EventsPageDisplay
-				isLoading={isLoading}
-				page={currentPage}
-			/>
-			{pages.length > 0 ? (
-				<EventsNav
-					currentPageNumber={currentPageNumber}
-					totalPages={totalPages}
-					onNavigate={(pageNumber) => setCurrentPageNumber(pageNumber)}
-					disabled={isLoading}
+		<EventsBrowserContainer>
+			<Container aria-label={title}>
+				<Title>{title}</Title>
+				<LastUpdated
+					key='last-updated'
+					lastUpdated={lastUpdated}
+					updatedLabel={updated_label}
 				/>
-			) : null}
-		</Container>
+				<EventsPageDisplay
+					isLoading={isLoading}
+					page={currentPage}
+					timeLabel={time_label}
+					durationLabel={duration_label}
+					locationLabel={location_label}
+					noEventsLabel={no_events_label}
+				/>
+				{pages.length > 0 ? (
+					<EventsNav
+						currentPageNumber={currentPageNumber}
+						totalPages={totalPages}
+						onNavigate={(pageNumber) => setCurrentPageNumber(pageNumber)}
+						disabled={isLoading}
+						nextPageLabel={next_page_label}
+						prevPageLabel={prev_page_label}
+						pageLabel={page_label}
+					/>
+				) : null}
+			</Container>
+		</EventsBrowserContainer>
 	);
 }

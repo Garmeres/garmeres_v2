@@ -88,7 +88,6 @@ const BlogBrowser = styled((props) => {
 	box-sizing: border-box;
 	margin: 0 auto;
 	min-height: 50vh;
-	border-radius: 4px;
 
 	&:nth-child(2) {
 		margin-top: 25vh;

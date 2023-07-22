@@ -24,7 +24,14 @@ const EmptyText = styled.span`
 	margin: auto;
 `;
 
-export default function EventsPageDisplay({ isLoading, page }) {
+export default function EventsPageDisplay({
+	isLoading,
+	page,
+	timeLabel,
+	durationLabel,
+	locationLabel,
+	noEventsLabel,
+}) {
 	const [maxEventsInPage, setMaxEventsInPage] = useState(0);
 	const events = page != null && page['events'] != null ? page['events'] : [];
 	let i = 0;
@@ -50,11 +57,14 @@ export default function EventsPageDisplay({ isLoading, page }) {
 							key={i++}
 							id={i}
 							onClick={onEventClick}
+							timeLabel={timeLabel}
+							durationLabel={durationLabel}
+							locationLabel={locationLabel}
 							{...event}
 						/>
 					))
 				) : (
-					<EmptyText>No upcoming events</EmptyText>
+					<EmptyText>{noEventsLabel || 'No upcoming events'}</EmptyText>
 				)}
 			</EventsContainer>
 		</Container>

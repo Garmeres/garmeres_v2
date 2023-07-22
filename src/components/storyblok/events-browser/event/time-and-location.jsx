@@ -49,59 +49,81 @@ const Span = styled.span`
 	white-space: nowrap;
 `;
 
-const TimeString = ({ start, end, duration }) => {
+const TimeString = ({ start, end, duration, timeLabel }) => {
 	const time = getTimeString(start, end, duration);
 	return time != null ? (
-		<TimeLocationContainer>
+		<TimeLocationContainer aria-label={`${timeLabel || 'Time'}: ${time}`}>
 			<IoTimeOutline
 				size={18}
 				style={{
 					margin: 'auto 5px auto 0',
 				}}
+				aria-hidden='true'
 			/>
-			<span>{time}</span>
+			<span aria-hidden='true'>{time}</span>
 		</TimeLocationContainer>
 	) : null;
 };
 
-const DurationString = ({ duration }) => {
+const DurationString = ({ duration, durationLabel }) => {
 	const durationString = getDurationString(duration);
 	return durationString != null ? (
-		<TimeLocationContainer>
+		<TimeLocationContainer
+			aria-label={`${durationLabel || 'Duration'}: ${durationString}`}
+		>
 			<IoTimerOutline
 				size={18}
 				style={{
 					margin: 'auto 5px auto 0',
 				}}
+				aria-hidden='true'
 			/>
-			<Span>{getDurationString(duration)}</Span>
+			<Span aria-hidden='true'>{getDurationString(duration)}</Span>
 		</TimeLocationContainer>
 	) : null;
 };
 
-const LocationString = ({ location }) =>
+const LocationString = ({ location, locationLabel }) =>
 	location != null && location !== '' ? (
-		<TimeLocationContainer>
+		<TimeLocationContainer
+			aria-label={`${locationLabel || 'Location'}: ${location}`}
+		>
 			<IoLocationOutline
 				size={20}
 				style={{
 					margin: 'auto 5px auto 0',
 				}}
+				aria-hidden='true'
 			/>
-			<Span>{location}</Span>
+			<Span aria-hidden='true'>{location}</Span>
 		</TimeLocationContainer>
 	) : null;
 
-export default function TimeAndLocation({ start, end, duration, location }) {
+export default function TimeAndLocation({
+	start,
+	end,
+	duration,
+	location,
+	timeLabel,
+	durationLabel,
+	locationLabel,
+}) {
 	return (
 		<Container>
 			<TimeString
 				start={start}
 				end={end}
 				duration={duration}
+				timeLabel={timeLabel}
 			/>
-			<DurationString duration={duration} />
-			<LocationString location={location} />
+			<DurationString
+				duration={duration}
+				durationLabel={durationLabel}
+			/>
+			<LocationString
+				location={location}
+				locationLabel={locationLabel}
+			/>
 		</Container>
 	);
 }

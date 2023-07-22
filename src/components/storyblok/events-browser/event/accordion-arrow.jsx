@@ -30,7 +30,7 @@ export default function EventAccordionArrow({ isOpen }) {
 			<IoChevronDownSharp {...props} />
 		);
 	return (
-		<Container>
+		<Container aria-hidden='true'>
 			<Icon
 				size={25}
 				style={{

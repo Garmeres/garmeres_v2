@@ -60,7 +60,7 @@ const TimeString = ({ start, end, duration, timeLabel }) => {
 				}}
 				aria-hidden='true'
 			/>
-			<span aria-hidden='true'>{time}</span>
+			<Span>{time}</Span>
 		</TimeLocationContainer>
 	) : null;
 };
@@ -78,7 +78,7 @@ const DurationString = ({ duration, durationLabel }) => {
 				}}
 				aria-hidden='true'
 			/>
-			<Span aria-hidden='true'>{getDurationString(duration)}</Span>
+			<Span>{getDurationString(duration)}</Span>
 		</TimeLocationContainer>
 	) : null;
 };
@@ -95,7 +95,7 @@ const LocationString = ({ location, locationLabel }) =>
 				}}
 				aria-hidden='true'
 			/>
-			<Span aria-hidden='true'>{location}</Span>
+			<Span>{location}</Span>
 		</TimeLocationContainer>
 	) : null;
 

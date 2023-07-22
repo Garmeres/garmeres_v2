@@ -101,6 +101,7 @@ export default function Event(props) {
 						currentTarget: detailsRef.current,
 					});
 				}}
+				aria-expanded={isOpen}
 			>
 				<DateBox datetime={start} />
 				<EventSummaryText>

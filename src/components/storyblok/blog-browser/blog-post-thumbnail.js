@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import variables from '../../../styles/variables';
+import { getBlogPostThumbnail } from './helpers/utils';
 
 const BlogPostThumbnail = styled((props) => {
-	const thumbnail =
-		props.node.content.thumbnail.filename !== ''
-			? props.node.content.thumbnail
-			: props.source.default_thumbnail;
+	const thumbnail = getBlogPostThumbnail(props.node, props.source);
 	return (
 		<img
 			{...props}

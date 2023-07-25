@@ -8,17 +8,26 @@ import {
 	getBlogPostNodeDateString,
 	getNodeTitle,
 	getBlogPostParagraphText,
+	getBlogPostAriaDescription,
 } from './helpers/utils';
+import { useTranslations } from '../../../hooks/use-translations';
 
 const BlogPostCard = styled((props) => {
 	const title = getNodeTitle(props.node);
 	const date = getBlogPostNodeDateString(props.node);
 	const paragraphText = getBlogPostParagraphText(props.node);
+	const translations = useTranslations();
+	const ariaDescription = getBlogPostAriaDescription(
+		props.node,
+		props.source,
+		translations
+	);
 	return (
 		<Link
 			{...props}
 			to={`/${props.node.full_slug}`}
 			aria-label={title}
+			aria-description={ariaDescription}
 		>
 			<BlogPostThumbnail
 				node={props.node}
@@ -70,7 +79,7 @@ const BlogPostCard = styled((props) => {
 	}
 `;
 
-const BlogPostTitle = styled.h2`
+const BlogPostTitle = styled.h3`
 	font-size: var(--font-size-medium-small);
 	margin: 1.2em 0;
 `;

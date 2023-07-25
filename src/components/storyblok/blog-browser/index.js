@@ -6,6 +6,7 @@ import { fetchBlogPosts } from './helpers/fetchBlogPosts';
 import { getHexWithAlpha } from '../../../../helpers/storyblok-helpers/color-helpers';
 import ShowMoreMutton from './show-more-button';
 import { storyblokEditable } from 'gatsby-source-storyblok';
+import { useTranslations } from '../../../hooks/use-translations';
 
 const BlogPostsContainer = styled.div`
 	display: flex;
@@ -15,6 +16,15 @@ const BlogPostsContainer = styled.div`
 	flex-grow: 1;
 	box-sizing: border-box;
 	padding: 0 5vw;
+`;
+
+const BlogBrowserTitle = styled.h2`
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
 `;
 
 const BlogBrowser = styled((props) => {
@@ -47,11 +57,15 @@ const BlogBrowser = styled((props) => {
 		props.blok.source_path.story,
 	]);
 
+	const translations = useTranslations();
+	const browserTitle = translations.news[props.source.lang];
 	return (
 		<div
 			{...props}
 			{...storyblokEditable(props.blok)}
+			aria-label={browserTitle}
 		>
+			<BlogBrowserTitle>{browserTitle}</BlogBrowserTitle>
 			<BlogPostsContainer>
 				{blogPosts.map((blogPost) => (
 					<BlogPost

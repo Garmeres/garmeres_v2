@@ -29,3 +29,19 @@ export function getBlogPostParagraphText(node) {
 		blogPostText.length > paragraphLength ? '...' : null
 	}`;
 }
+
+export function getBlogPostThumbnail(node, source) {
+	return node.content.thumbnail.filename !== ''
+		? node.content.thumbnail
+		: source.default_thumbnail;
+}
+
+export function getBlogPostAriaDescription(node, source, translations) {
+	const thumbnail = getBlogPostThumbnail(node, source);
+	const title = getNodeTitle(node);
+	const date = getBlogPostNodeDateString(node);
+	const paragraphText = getBlogPostParagraphText(node);
+	const lang = node.lang;
+
+	return `${translations.title[lang]}: ${title}, ${translations.image[lang]}: ${thumbnail.alt}, ${translations.date[lang]}: ${date}, ${translations.description[lang]}: ${paragraphText}`;
+}

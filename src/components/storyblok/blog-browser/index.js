@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import variables from '../../../styles/variables';
 import BlogPost from './blog-post';
-import { fetchBlogPosts } from './helpers';
+import { fetchBlogPosts } from './helpers/fetchBlogPosts';
 import { getHexWithAlpha } from '../../../../helpers/storyblok-helpers/color-helpers';
 import ShowMoreMutton from './show-more-button';
 import { storyblokEditable } from 'gatsby-source-storyblok';

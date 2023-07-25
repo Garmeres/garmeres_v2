@@ -2,26 +2,34 @@ import React from 'react';
 import styled from 'styled-components';
 import variables from '../../../styles/variables';
 import BlogPostThumbnail from './blog-post-thumbnail';
-import BlogPostTitle from './blog-post-title';
-import BlogPostDate from './blog-post-date';
-import BlogPostParagraph from './blog-post-paragraph';
 import { getHexWithAlpha } from '../../../../helpers/storyblok-helpers/color-helpers';
 import { Link } from 'gatsby';
+import {
+	getBlogPostNodeDateString,
+	getNodeTitle,
+	getBlogPostParagraphText,
+} from './helpers/utils';
 
-const BlogPostCard = styled((props) => (
-	<Link
-		{...props}
-		to={`/${props.node.full_slug}`}
-	>
-		<BlogPostThumbnail
-			node={props.node}
-			source={props.source}
-		/>
-		<BlogPostTitle node={props.node} />
-		<BlogPostDate node={props.node} />
-		<BlogPostParagraph node={props.node} />
-	</Link>
-))`
+const BlogPostCard = styled((props) => {
+	const title = getNodeTitle(props.node);
+	const date = getBlogPostNodeDateString(props.node);
+	const paragraphText = getBlogPostParagraphText(props.node);
+	return (
+		<Link
+			{...props}
+			to={`/${props.node.full_slug}`}
+			aria-label={title}
+		>
+			<BlogPostThumbnail
+				node={props.node}
+				source={props.source}
+			/>
+			<BlogPostTitle>{title}</BlogPostTitle>
+			<BlogPostDate>{date}</BlogPostDate>
+			<BlogPostParagraph>{paragraphText}</BlogPostParagraph>
+		</Link>
+	);
+})`
 	--blog-post-card-width: 450px;
 	--blog-post-card-padding: 30px;
 	padding: var(--blog-post-card-padding);
@@ -60,6 +68,22 @@ const BlogPostCard = styled((props) => (
 			text-decoration: underline;
 		}
 	}
+`;
+
+const BlogPostTitle = styled.h2`
+	font-size: var(--font-size-medium-small);
+	margin: 1.2em 0;
+`;
+
+const BlogPostDate = styled.span`
+	opacity: 0.8;
+	font-size: var(--font-size-extra-small);
+`;
+
+const BlogPostParagraph = styled.p`
+	font-size: var(--font-size-extra-small);
+	line-height: 1.5em;
+	margin: 1em 0;
 `;
 
 const BlogPost = styled((props) => (

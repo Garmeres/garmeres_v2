@@ -7,6 +7,7 @@ import { useState } from 'react';
 import variables from '../../../styles/variables';
 import { DesktopNav, MobileNav } from './menu-nav';
 import { DesktopNavItem, MobileNavItem } from './menu-nav-item';
+import { useTranslations } from '../../../hooks/use-translations';
 
 const Header = styled.header`
 	--header-height: 110px;
@@ -71,6 +72,7 @@ const getMenuItems = (menuNode, source) =>
 const Menu = ({ menuNode, source, homeSlug }) => {
 	const [menuIsOpen, setMenuIsOpen] = useState(false);
 	const menuItems = getMenuItems(menuNode, source);
+	const translations = useTranslations();
 	let i = 0;
 	return (
 		<Header>
@@ -89,7 +91,11 @@ const Menu = ({ menuNode, source, homeSlug }) => {
 					<MenuLanguageSelector source={source} />
 				</DesktopNav>
 				<BurgerButton
-					aria-label={getMenuAriaLabel(menuIsOpen)}
+					aria-label={
+						menuIsOpen === true
+							? translations.hide_menu[source.lang]
+							: translations.show_menu[source.lang]
+					}
 					onClick={() => setMenuIsOpen(!menuIsOpen)}
 				/>
 			</HeaderHorizontalContainer>

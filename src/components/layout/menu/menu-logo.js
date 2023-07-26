@@ -3,13 +3,18 @@ import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import variables from '../../../styles/variables';
+import { useTranslations } from '../../../hooks/use-translations';
 
-const LogoLink = styled((props) => (
-	<Link
-		{...props}
-		to={props.homeslug}
-	/>
-))`
+const LogoLink = styled((props) => {
+	const translations = useTranslations();
+	return (
+		<Link
+			{...props}
+			to={props.homeslug}
+			aria-label={`Garmeres - ${translations.home[props.lang]}`}
+		/>
+	);
+})`
 	--logo-size: 70px;
 	height: 100%;
 	width: fit-content;
@@ -25,7 +30,12 @@ const LogoLink = styled((props) => (
 	}
 `;
 
-const LogoImage = styled((props) => <GatsbyImage {...props} />)`
+const LogoImage = styled((props) => (
+	<GatsbyImage
+		{...props}
+		aria-hidden={true}
+	/>
+))`
 	border-radius: 5px;
 	width: var(--logo-size);
 	min-width: var(--logo-size);
@@ -54,7 +64,10 @@ const getLogoImageNode = (menuNode) =>
 	);
 
 const MenuLogo = ({ menuNode, homeSlug }) => (
-	<LogoLink homeslug={homeSlug}>
+	<LogoLink
+		homeslug={homeSlug}
+		lang={menuNode.lang}
+	>
 		<LogoImage
 			image={getImage(getLogoImageNode(menuNode))}
 			alt={menuNode.content.logo.alt}

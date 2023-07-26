@@ -102,6 +102,7 @@ const BlogBrowser = styled((props) => {
 	box-sizing: border-box;
 	margin: 0 auto;
 	min-height: 50vh;
+	padding-top: 10vh;
 
 	&:nth-child(2) {
 		margin-top: 25vh;

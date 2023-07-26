@@ -18,7 +18,7 @@ const EventsBrowserContainer = styled.div`
 	margin: 0 auto;
 	flex-grow: 1;
 	box-sizing: border-box;
-	padding: 10vh 5vw;
+	padding: 10vh 5vw 0vh 5vw;
 
 	* {
 		outline-color: var(--highlight-color-dark);

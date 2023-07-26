@@ -44,17 +44,13 @@ const Background = styled.div`
 	overflow: hidden;
 `;
 
-const LayoutBackground = ({
-	backgroundColor,
-	backgroundImage,
-	backgroundImageAlt,
-}) => {
+const LayoutBackground = ({ backgroundColor, backgroundImage }) => {
 	return (
 		<Background $backgroundcolor={backgroundColor}>
 			{backgroundImage != null ? (
 				<BakgroundImage
 					image={backgroundImage}
-					alt={backgroundImageAlt}
+					alt={''}
 				/>
 			) : null}
 		</Background>

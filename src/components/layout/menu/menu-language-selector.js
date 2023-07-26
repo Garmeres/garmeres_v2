@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useStaticQuery, graphql, navigate } from 'gatsby';
 import { IoGlobeOutline } from 'react-icons/io5';
 import variables from '../../../styles/variables';
+import { useTranslations } from '../../../hooks/use-translations';
 
 const SelectorContainer = styled.div`
     --language-select-height: 45px;
@@ -68,7 +69,12 @@ const Option = styled.option`
 	}
 `;
 
-const GlobeIcon = styled((props) => <IoGlobeOutline {...props} />)`
+const GlobeIcon = styled((props) => (
+	<IoGlobeOutline
+		{...props}
+		aria-hidden={true}
+	/>
+))`
 	color: inherit;
 	height: var(--globe-icon-size);
 	width: var(--globe-icon-size);
@@ -106,8 +112,18 @@ const LanguageSelector = (props) => {
 		);
 	};
 
+	const translations = useTranslations();
+
 	return (
-		<SelectorContainer className={props.className}>
+		<SelectorContainer
+			className={props.className}
+			aria-label={Object.keys(translations.language)
+				.sort((a, b) =>
+					a === b ? 0 : b === 'default' ? -1 : a === 'sme' ? -1 : 1
+				)
+				.map((l) => translations.language[l])
+				.join(' / ')}
+		>
 			<GlobeIcon />
 			<Select
 				name='languages'

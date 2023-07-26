@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useStaticQuery, graphql, navigate } from 'gatsby';
+import { navigate } from 'gatsby';
 import { IoGlobeOutline } from 'react-icons/io5';
 import variables from '../../../styles/variables';
 import { useTranslations } from '../../../hooks/use-translations';
+import { useLanguageSettings } from '../../../hooks/use-language-settings';
 
 const SelectorContainer = styled.div`
     --language-select-height: 45px;
@@ -84,22 +85,8 @@ const GlobeIcon = styled((props) => (
 
 const LanguageSelector = (props) => {
 	const [lang, setLang] = useState(props.source.lang);
-	const { languageSettings } = useStaticQuery(
-		graphql`
-			query LanguageSettings {
-				languageSettings: allStoryblokEntry(
-					filter: { field_component: { eq: "settings" } }
-				) {
-					edges {
-						node {
-							lang
-							content
-						}
-					}
-				}
-			}
-		`
-	);
+	const languageSettings = useLanguageSettings();
+	const translations = useTranslations();
 
 	const navigateToLang = (lang) => {
 		navigate(
@@ -112,18 +99,18 @@ const LanguageSelector = (props) => {
 		);
 	};
 
-	const translations = useTranslations();
+	const selectorAriaLabel = Object.keys(translations.language)
+		.sort((a, b) => {
+			if (a === b) return 0;
+			if (a === props.source.lang) return -1;
+			if (b === props.source.lang) return 1;
+			return 0;
+		})
+		.map((l) => translations.language[l])
+		.join(' / ');
 
 	return (
-		<SelectorContainer
-			className={props.className}
-			aria-label={Object.keys(translations.language)
-				.sort((a, b) =>
-					a === b ? 0 : b === 'default' ? -1 : a === 'sme' ? -1 : 1
-				)
-				.map((l) => translations.language[l])
-				.join(' / ')}
-		>
+		<SelectorContainer className={props.className}>
 			<GlobeIcon />
 			<Select
 				name='languages'
@@ -133,14 +120,16 @@ const LanguageSelector = (props) => {
 					setLang(e.target.value);
 					navigateToLang(e.target.value);
 				}}
+				aria-label={selectorAriaLabel}
 			>
-				{languageSettings.edges.map(({ node }) => {
+				{Object.keys(languageSettings).map((l) => {
 					return (
 						<Option
-							key={node.lang}
-							value={node.lang}
+							key={l}
+							value={l}
+							lang={languageSettings[l].language_code}
 						>
-							{JSON.parse(node.content).language_label}
+							{languageSettings[l].language_label}
 						</Option>
 					);
 				})}

@@ -11,7 +11,7 @@ const LogoLink = styled((props) => {
 		<Link
 			{...props}
 			to={props.homeslug}
-			aria-label={`Garmeres - ${translations.home[props.lang]}`}
+			aria-label={`Garmeres - ${translations.home[props._lang]}`}
 		/>
 	);
 })`
@@ -66,7 +66,7 @@ const getLogoImageNode = (menuNode) =>
 const MenuLogo = ({ menuNode, homeSlug }) => (
 	<LogoLink
 		homeslug={homeSlug}
-		lang={menuNode.lang}
+		_lang={menuNode.lang}
 	>
 		<LogoImage
 			image={getImage(getLogoImageNode(menuNode))}

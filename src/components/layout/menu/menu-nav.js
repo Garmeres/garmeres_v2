@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import variables from '../../../styles/variables';
 
-const MenuNav = styled.div`
+const MenuNav = styled.nav`
 	color: inherit;
 	background-color: inherit;
 	display: none;

@@ -49,10 +49,12 @@ const Span = styled.span`
 	white-space: nowrap;
 `;
 
-const TimeString = ({ start, end, duration, timeLabel }) => {
+const TimeString = ({ start, end, duration, translations, lang }) => {
 	const time = getTimeString(start, end, duration);
 	return time != null ? (
-		<TimeLocationContainer aria-label={`${timeLabel || 'Time'}: ${time}`}>
+		<TimeLocationContainer
+			aria-label={`${translations.time[lang] || 'Time'}: ${time}`}
+		>
 			<IoTimeOutline
 				size={18}
 				style={{
@@ -65,11 +67,13 @@ const TimeString = ({ start, end, duration, timeLabel }) => {
 	) : null;
 };
 
-const DurationString = ({ duration, durationLabel }) => {
-	const durationString = getDurationString(duration);
+const DurationString = ({ duration, translations, lang }) => {
+	const durationString = getDurationString(duration, translations, lang);
 	return durationString != null ? (
 		<TimeLocationContainer
-			aria-label={`${durationLabel || 'Duration'}: ${durationString}`}
+			aria-label={`${
+				translations.duration[lang] || 'Duration'
+			}: ${durationString}`}
 		>
 			<IoTimerOutline
 				size={18}
@@ -78,15 +82,15 @@ const DurationString = ({ duration, durationLabel }) => {
 				}}
 				aria-hidden='true'
 			/>
-			<Span>{getDurationString(duration)}</Span>
+			<Span>{durationString}</Span>
 		</TimeLocationContainer>
 	) : null;
 };
 
-const LocationString = ({ location, locationLabel }) =>
+const LocationString = ({ location, translations, lang }) =>
 	location != null && location !== '' ? (
 		<TimeLocationContainer
-			aria-label={`${locationLabel || 'Location'}: ${location}`}
+			aria-label={`${translations.location[lang] || 'Location'}: ${location}`}
 		>
 			<IoLocationOutline
 				size={20}
@@ -104,9 +108,8 @@ export default function TimeAndLocation({
 	end,
 	duration,
 	location,
-	timeLabel,
-	durationLabel,
-	locationLabel,
+	translations,
+	lang,
 }) {
 	return (
 		<Container>
@@ -114,15 +117,18 @@ export default function TimeAndLocation({
 				start={start}
 				end={end}
 				duration={duration}
-				timeLabel={timeLabel}
+				translations={translations}
+				lang={lang}
 			/>
 			<DurationString
 				duration={duration}
-				durationLabel={durationLabel}
+				translations={translations}
+				lang={lang}
 			/>
 			<LocationString
 				location={location}
-				locationLabel={locationLabel}
+				translations={translations}
+				lang={lang}
 			/>
 		</Container>
 	);

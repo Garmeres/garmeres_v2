@@ -66,10 +66,8 @@ export default function Event(props) {
 		duration,
 		start,
 		end,
-		timeLabel,
-		durationLabel,
-		locationLabel,
-		noDescriptionLabel,
+		translations,
+		lang,
 	} = props;
 	const detailsRef = useRef();
 
@@ -104,7 +102,11 @@ export default function Event(props) {
 				}}
 				aria-expanded={isOpen}
 			>
-				<DateBox datetime={start} />
+				<DateBox
+					datetime={start}
+					translations={translations}
+					lang={lang}
+				/>
 				<EventSummaryText>
 					<EventName>{name}</EventName>
 					<TimeAndLocation
@@ -112,14 +114,15 @@ export default function Event(props) {
 						start={start}
 						end={end}
 						duration={duration}
-						timeLabel={timeLabel}
-						durationLabel={durationLabel}
-						locationLabel={locationLabel}
+						translations={translations}
+						lang={lang}
 					/>
 				</EventSummaryText>
 				<EventAccordionArrow isOpen={isOpen} />
 			</Summary>
-			<Body>{description || noDescriptionLabel || 'No description'}</Body>
+			<Body>
+				{description || translations.no_description[lang] || 'No description'}
+			</Body>
 		</Details>
 	);
 }

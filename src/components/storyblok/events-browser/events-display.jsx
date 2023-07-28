@@ -27,11 +27,9 @@ const EmptyText = styled.span`
 export default function EventsPageDisplay({
 	isLoading,
 	page,
-	timeLabel,
-	durationLabel,
-	locationLabel,
 	noEventsLabel,
-	noDescriptionLabel,
+	translations,
+	lang,
 }) {
 	const [maxEventsInPage, setMaxEventsInPage] = useState(0);
 	const events = page != null && page['events'] != null ? page['events'] : [];
@@ -58,10 +56,8 @@ export default function EventsPageDisplay({
 							key={i++}
 							id={i}
 							onClick={onEventClick}
-							timeLabel={timeLabel}
-							durationLabel={durationLabel}
-							locationLabel={locationLabel}
-							noDescriptionLabel={noDescriptionLabel}
+							translations={translations}
+							lang={lang}
 							{...event}
 						/>
 					))

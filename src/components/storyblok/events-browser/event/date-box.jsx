@@ -34,34 +34,34 @@ const DateContainer = styled.div`
 	}
 `;
 
-const monthNames = [
-	'Jan',
-	'Feb',
-	'Mar',
-	'Apr',
-	'May',
-	'Jun',
-	'Jul',
-	'Aug',
-	'Sep',
-	'Oct',
-	'Nov',
-	'Dec',
+const monthIndices = [
+	'january',
+	'february',
+	'march',
+	'april',
+	'may',
+	'june',
+	'july',
+	'august',
+	'september',
+	'october',
+	'november',
+	'december',
 ];
 
-export default function DateBox({ datetime, color }) {
+export default function DateBox({ datetime, color, translations, lang }) {
 	const date = new Date(datetime);
 	const dateString = date.getDate();
-	const monthString = monthNames[date.getMonth()];
+	const monthString = translations[monthIndices[date.getMonth()]][lang];
 	return (
-		<Container aria-label={`${dateString} ${monthString}`}>
+		<Container aria-label={`${dateString}. ${monthString}`}>
 			<Border
 				color={color}
 				aria-hidden='true'
 			/>
 			<DateContainer aria-hidden='true'>
 				<span>{dateString}</span>
-				<span>{monthString}</span>
+				<span>{monthString.slice(0, 3)}</span>
 			</DateContainer>
 		</Container>
 	);

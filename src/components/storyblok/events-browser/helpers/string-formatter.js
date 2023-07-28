@@ -31,7 +31,20 @@ export function parseDuration(durationIso) {
 	};
 }
 
-export function getDurationString(durationIso) {
+function durationUnit(key, value, translations, lang) {
+	let units = {
+		years: value === 1 ? translations.year : translations.years,
+		months: value === 1 ? translations.month : translations.months,
+		weeks: value === 1 ? translations.week : translations.weeks,
+		days: value === 1 ? translations.day : translations.days,
+		hours: value === 1 ? translations.hour : translations.hours,
+		minutes: value === 1 ? translations.minute : translations.minutes,
+		secs: value === 1 ? translations.second : translations.seconds,
+	};
+	return units[key][lang];
+}
+
+export function getDurationString(durationIso, translations, lang) {
 	if (!isLongerThanADay(durationIso)) return null;
 
 	const parsedDuration = parseDuration(durationIso);
@@ -39,7 +52,7 @@ export function getDurationString(durationIso) {
 	for (const [key, value] of Object.entries(parsedDuration)) {
 		if (value > 0) {
 			durationStringArray.push(
-				`${value} ${value === 1 ? key.slice(0, -1) : key}`
+				`${value} ${durationUnit(key, value, translations, lang)}`
 			);
 		}
 	}

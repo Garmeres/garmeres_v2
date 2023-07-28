@@ -5,6 +5,7 @@ import EventsPageDisplay from './events-display';
 import EventsNav from './events-nav';
 import LastUpdated from './last-updated';
 import variables from '../../../styles/variables';
+import { useTranslations } from '../../../hooks/use-translations';
 
 const EventsBrowserContainer = styled.div`
 	--page-content-width: ${variables.pageContentWidthDefault};
@@ -73,20 +74,10 @@ export default function EventsBrowser(props) {
 	const [totalPages, setTotalPages] = useState(1);
 	const [isLoading, setIsLoading] = useState(false);
 	const [lastUpdated, setLastUpdated] = useState(null);
+	const translations = useTranslations();
 
 	const { blok } = props;
-	const {
-		title,
-		duration_label,
-		location_label,
-		no_events_label,
-		next_page_label,
-		prev_page_label,
-		time_label,
-		page_label,
-		updated_label,
-		no_description_label,
-	} = blok;
+	const { title, no_events_label } = blok;
 
 	useEffect(() => {
 		async function updateEventsView() {
@@ -127,16 +118,14 @@ export default function EventsBrowser(props) {
 				<LastUpdated
 					key='last-updated'
 					lastUpdated={lastUpdated}
-					updatedLabel={updated_label}
+					updatedLabel={translations.last_updated[props.source.lang]}
 				/>
 				<EventsPageDisplay
 					isLoading={isLoading}
 					page={currentPage}
-					timeLabel={time_label}
-					durationLabel={duration_label}
-					locationLabel={location_label}
 					noEventsLabel={no_events_label}
-					noDescriptionLabel={no_description_label}
+					translations={translations}
+					lang={props.source.lang}
 				/>
 				{pages.length > 0 ? (
 					<EventsNav
@@ -144,9 +133,8 @@ export default function EventsBrowser(props) {
 						totalPages={totalPages}
 						onNavigate={(pageNumber) => setCurrentPageNumber(pageNumber)}
 						disabled={isLoading}
-						nextPageLabel={next_page_label}
-						prevPageLabel={prev_page_label}
-						pageLabel={page_label}
+						translations={translations}
+						lang={props.source.lang}
 					/>
 				) : null}
 			</Container>

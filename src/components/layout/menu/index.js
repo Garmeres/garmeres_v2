@@ -47,9 +47,6 @@ const HeaderHorizontalContainer = styled.div`
 	margin: 0 auto;
 `;
 
-const getMenuAriaLabel = (isOpen) =>
-	isOpen === true ? 'Hide navigation menu' : 'Show navigation menu';
-
 const getMenuItems = (menuNode, source) =>
 	menuNode.content.items
 		.map((item) =>

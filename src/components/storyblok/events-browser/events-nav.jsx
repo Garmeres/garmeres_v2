@@ -83,21 +83,20 @@ export default function EventsNav({
 	totalPages,
 	onNavigate,
 	disabled,
-	pageLabel,
-	nextPageLabel,
-	prevPageLabel,
+	translations,
+	lang,
 }) {
 	return totalPages > 1 ? (
 		<Container>
 			<LeftArrow
-				aria-label={prevPageLabel || 'Previous page'}
+				aria-label={translations.prev_page[lang] || 'Previous page'}
 				disabled={disabled || currentPageNumber <= 0}
 				onClick={() => {
 					if (currentPageNumber > 0) onNavigate(currentPageNumber - 1);
 				}}
 			/>
 			<PageNumberView
-				aria-label={`${pageLabel || 'Page'}: ${
+				aria-label={`${translations.page[lang] || 'Page'}: ${
 					currentPageNumber + 1
 				}/${totalPages}`}
 			>
@@ -106,7 +105,7 @@ export default function EventsNav({
 				</span>
 			</PageNumberView>
 			<RightArrow
-				aria-label={nextPageLabel || 'Previous page'}
+				aria-label={translations.next_page[lang] || 'Next page'}
 				disabled={disabled || currentPageNumber + 1 >= totalPages}
 				onClick={() => {
 					if (currentPageNumber + 1 < totalPages)

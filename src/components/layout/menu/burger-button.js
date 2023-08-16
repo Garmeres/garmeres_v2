@@ -16,6 +16,7 @@ const Button = styled.button`
 	border: none;
 	visibility: hidden;
 	display: none;
+	color: white;
 	@media screen and (max-width: ${variables.screenWidthMedium}) {
 		visibility: visible;
 		display: flex;
@@ -29,6 +30,7 @@ const ButtonBar = styled.div`
 	background-color: var(--text-color-light);
 	width: 100%;
 	height: 3px;
+	color: white;
 `;
 
 const BurgerButton = (props) => {

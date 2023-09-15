@@ -35,6 +35,7 @@ const ShowMoreMutton = styled((props) =>
 	margin: 16pt auto;
 	width: 90%;
 	outline-color: var(--highlight-color-dark);
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 
 	@media (prefers-color-scheme: light) {
 		color: var(--text-color-dark);

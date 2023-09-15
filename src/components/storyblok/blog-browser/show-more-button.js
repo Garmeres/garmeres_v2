@@ -1,9 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-	getHexWithAlpha,
-	getHexWithAlphaAndHighlight,
-} from '../../../../helpers/storyblok-helpers/color-helpers';
 import { ClipLoader } from 'react-spinners';
 
 const Loader = styled((props) => (
@@ -31,26 +27,18 @@ const ShowMoreMutton = styled((props) =>
 )`
 	--show-more-button-height: 120px;
 	height: var(--show-more-button-height);
-	color: ${(props) => props.source.show_more_button_text_color.color};
-	background-color: ${(props) =>
-		getHexWithAlpha(
-			props.source.show_more_button_background_color.color,
-			props.source.show_more_button_background_opacity
-		)};
-	color: #333;
+	background-color: var(--theme-color-dark-blue);
+	color: var(--text-color-light);
 	border: none;
 	border-radius: 5px;
 	font-size: var(--font-size-small);
-	margin: 0 auto;
-	width: 100%;
+	margin: 16pt auto;
+	width: 90%;
 	outline-color: var(--highlight-color-dark);
-	:hover {
-		background-color: ${(props) =>
-			getHexWithAlphaAndHighlight(
-				props.source.show_more_button_background_color.color,
-				props.source.show_more_button_background_opacity,
-				5
-			)};
+
+	@media (prefers-color-scheme: light) {
+		color: var(--text-color-dark);
+		background-color: var(--theme-color-light-green);
 	}
 `;
 

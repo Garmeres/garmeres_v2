@@ -13,7 +13,7 @@ const Header = styled.header`
 	--header-height: 110px;
 	--header-content-width: 95%;
 	color: var(--text-color-light);
-	background: var(--bg-color-dark);
+	background-color: var(--bg-color-dark);
 	display: flex;
 	flex-direction: column;
 	min-width: 100vw;
@@ -35,7 +35,7 @@ const HeaderHorizontalContainer = styled.div`
 	height: var(--header-hight);
 	min-height: var(--header-height);
 	max-height: var(--header-height);
-	background-color: var(inherit);
+	background-color: inherit;
 	color: inherit;
 	display: flex;
 	flex-direction: row;

@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import variables from '../../../styles/variables';
+import { RxHamburgerMenu } from 'react-icons/rx';
 
 const Button = styled.button`
-	--burger-button-size: 40px;
+	--burger-button-size: 50px;
 	height: var(--burger-button-size);
 	width: var(--burger-button-size);
 	min-width: var(--burger-button-size);
@@ -16,30 +17,20 @@ const Button = styled.button`
 	border: none;
 	visibility: hidden;
 	display: none;
-	color: white;
+	color: var(--text-color-light);
 	@media screen and (max-width: ${variables.screenWidthMedium}) {
 		visibility: visible;
 		display: flex;
 	}
 	@media screen and (max-width: ${variables.screenWidthSmall}) {
-		--burger-button-size: 35px;
+		--burger-button-size: 45px;
 	}
-`;
-
-const ButtonBar = styled.div`
-	background-color: var(--text-color-light);
-	width: 100%;
-	height: 3px;
-	color: white;
 `;
 
 const BurgerButton = (props) => {
 	return (
 		<Button {...props}>
-			<ButtonBar />
-			<ButtonBar />
-			<ButtonBar />
-			<ButtonBar />
+			<RxHamburgerMenu size={'100%'} />
 		</Button>
 	);
 };

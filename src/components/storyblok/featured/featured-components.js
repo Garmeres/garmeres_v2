@@ -30,7 +30,7 @@ const CallToAction = styled((props) => <Link {...props} />)`
 	color: white;
 	min-width: 10vw;
 	border-radius: 5px;
-	outline-color: red;
+	outline-color: var(--highlight-color-light);
 
 	background-color: var(--theme-color-dark-blue);
 	font-weight: 500;
@@ -44,6 +44,7 @@ const CallToAction = styled((props) => <Link {...props} />)`
 	@media (prefers-color-scheme: light) {
 		background-color: var(--theme-color-light-green);
 		color: var(--text-color-dark);
+		outline-color: var(--highlight-color-dark);
 	}
 `;
 

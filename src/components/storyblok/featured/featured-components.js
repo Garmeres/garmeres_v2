@@ -25,17 +25,25 @@ const CallToAction = styled((props) => <Link {...props} />)`
 	font-family: 'Quicksand' !important;
 	font-size: var(--font-size-medium-small);
 	text-decoration: none;
-	background-color: #000000;
 	margin: var(--font-size-medium-small) auto;
-	padding: 10px;
+	padding: 1em 1.5em;
 	color: white;
 	min-width: 10vw;
 	border-radius: 5px;
 	outline-color: red;
 
+	background-color: var(--theme-color-dark-blue);
+	font-weight: 500;
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+
 	@media screen and ((max-width: ${variables.screenWidthSmall}) or (max-height: ${variables.screenWidthSmall})) {
 		font-size: var(--font-size-small);
 		margin: var(--font-size-small) auto;
+	}
+
+	@media (prefers-color-scheme: light) {
+		background-color: var(--theme-color-light-green);
+		color: var(--text-color-dark);
 	}
 `;
 

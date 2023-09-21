@@ -6,7 +6,7 @@ This is the second iteration for the Garmeres website. For more information abou
 
 1. Open the project folder.
 2. Create a file named `.env.development` and add the environment variables listed below
-3. Run `npm ci` and then `npm start`
+3. Run `npm ci --legacy-peer-deps` and then `npm start`
 4. Open your browser at `https://localhost:8000`
 
 ### Environment variables
@@ -19,6 +19,7 @@ GATSBY_STORYBLOK_ACCESS_TOKEN=
 GATSBY_STORYBLOK_CONTENT_VERSION=draft
 GATSBY_GOOGLE_GTAG=
 GATSBY_EVENTS_API_URL=https://events.api.garmeres.com
+
 ```
 
 ### HTTPS proxy

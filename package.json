@@ -30,7 +30,7 @@
 	"dependencies": {
 		"@storyblok/js": "^2.3.0",
 		"babel-plugin-styled-components": "^2.1.4",
-		"gatsby": "^5.11.0",
+		"gatsby": "^5.12.5",
 		"gatsby-omni-font-loader": "^2.0.2",
 		"gatsby-plugin-gdpr-cookies": "^2.0.9",
 		"gatsby-plugin-image": "^3.8.0",
